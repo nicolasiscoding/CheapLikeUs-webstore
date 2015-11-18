@@ -1,0 +1,278 @@
+/*******************************************************************************
+*                                                                              *
+*                                                           Smith, Phillip     *
+*                                                  smith.phillip.m@ufl.edu     *
+*                                                                              *
+*                                                             Fry, Nicolas     *
+*                                                    nicolascoding@ufl.edu     *
+*                                                                              *
+*******************************************************************************/
+
+/*******************************************************************************
+
+Color Chart
+
+Dk-Dk Gray    #0a0a0a  // modal backdrop
+Dk Gray       #2e2e2e  // background
+Md Gray       #676767  //
+Lt Gray       #9a9a9a  //
+White         #ffffff  // general text
+Orange        #e77e00  // active button
+Blue          #0069e7  // active button text
+
+
+*******************************************************************************/
+
+
+/*-- cover styling -----------------------------------------------------------*/
+
+/* Links */
+a,
+a:focus,
+a:hover {
+  color: #fff;
+
+}
+
+mark {
+  color: #0069e7;
+  background-color: #e77e00;    
+}
+
+/*
+ * Base structure
+ */
+
+html,
+body {
+  height: 100%;
+  background-color: #2e2e2e;
+}
+body {
+  color: #ffffff;
+  text-align: center;
+  text-shadow: 0 1px 3px rgba(0,0,0,.5);
+}
+
+/* Extra markup and styles for table-esque vertical and horizontal centering */
+.site-wrapper {
+  display: table;
+  width: 100%;
+  height: 100%; /* For at least Firefox */
+  min-height: 100%;
+  -webkit-box-shadow: inset 0 0 100px rgba(0,0,0,.5);
+          box-shadow: inset 0 0 100px rgba(0,0,0,.5);
+}
+.site-wrapper-inner {
+  display: table-cell;
+  vertical-align: top;
+}
+.cover-container {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/* Padding for spacing */
+.inner {
+  padding: 30px;
+}
+
+
+/*
+ * Header
+ */
+.masthead-brand {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.masthead-nav > li {
+  display: inline-block;
+}
+.masthead-nav > li + li {
+  margin-left: 20px;
+}
+.masthead-nav > li > a {
+  padding-right: 0;
+  padding-left: 0;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff; /* IE8 proofing */
+  color: rgba(255,255,255,.75);
+  border-bottom: 2px solid transparent;
+}
+.masthead-nav > li > a:hover,
+.masthead-nav > li > a:focus {
+  background-color: transparent;
+  border-bottom-color: #a9a9a9;
+  border-bottom-color: rgba(255,255,255,.25);
+}
+.masthead-nav > .active > a,
+.masthead-nav > .active > a:hover,
+.masthead-nav > .active > a:focus {
+  color: #fff;
+  border-bottom-color: #fff;
+}
+
+@media (min-width: 768px) {
+/*
+  .masthead-brand {
+    float: left;
+  }
+*/
+  .masthead-nav {
+    float: center;
+  }
+}
+
+
+/*
+ * Cover
+ */
+
+.cover {
+  padding: 0 20px;
+}
+.cover .btn-lg {
+  padding: 10px 20px;
+  font-weight: bold;
+}
+
+
+/*
+ * Footer
+ */
+
+.mastfoot {
+  color: #999; /* IE8 proofing */
+  color: rgba(255,255,255,.5);
+}
+
+
+/*
+ * Affix and center
+ */
+
+@media (min-width: 768px) {
+  /* Pull out the header and footer */
+  .masthead {
+    position: fixed;
+    top: 0;
+  }
+  .mastfoot {
+    position: fixed;
+    bottom: 0;
+  }
+  /* Start the vertical centering */
+  .site-wrapper-inner {
+    vertical-align: middle;
+  }
+  /* Handle the widths */
+  .masthead,
+  .mastfoot,
+  .cover-container {
+    width: 100%; /* Must be percentage or pixels for horizontal alignment */
+  }
+}
+
+@media (min-width: 992px) {
+  .masthead,
+  .mastfoot,
+  .cover-container {
+    width: 700px;
+  }
+}
+
+/*-- modal styling -----------------------------------------------------------*/
+
+.modal-dialog {
+  top: 5%;
+}
+.modal-content {
+  background-color: #2e2e2e;
+}
+.modal.fade.in ~ .modal-backdrop.fade.in {
+  background-color: #0a0a0a;
+  opacity: 1;
+}
+.modal ~ .modal-backdrop {
+  background-color: #2e2e2e;
+  opacity: 1;
+}
+.about_text {
+  text-align: left;
+}
+/*-- button styling ----------------------------------------------------------*/
+
+.btn-default {
+  color: #ffffff;
+  background-color: #676767;
+  border-color: none; 
+}
+.btn-default.hover, .btn-default:hover, .btn-default.focus, .btn-default:focus, .btn-default.visited, .btn-default:visited, .btn-default.active, .btn-default:active {
+  color: #0069e7 !important;
+  background-color: #e77e00 !important;
+}
+
+/*-- panel styling (collapseable list) ---------------------------------------*/
+
+.panel-default {
+  background-color: #e77e00;
+}
+.panel-default >.panel-heading {
+  color: #ffffff;
+  background-color: #676767;
+  padding: 0px !important;
+}
+.panel-default >.panel-collapse {
+  color: #ffffff;
+  background-color: #9a9a9a;
+}
+
+/*-- list item styling (collapseable list) -----------------------------------*/
+
+.list-group-item {
+  color: #ffffff !important;
+  background-color: #676767 !important;
+  text-align: left;
+}
+
+/*-- placeholder styling (input fields) --------------------------------------*/
+
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+  font-style: italic;
+  color: #bcbcbc !important;
+  opacity: 1;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+  font-style: italic;
+  color: #bcbcbc !important;
+  opacity: 1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+  font-style: italic;
+  color: #bcbcbc !important;
+  opacity: 1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  font-style: italic;
+  color: #bcbcbc !important;
+  opacity: 1;
+}
+
+/*-- badge styling -----------------------------------------------------------*/
+
+.badge.hover, .badge:hover {
+  color: #0069e7;
+  background-color: #e77e00;
+}
+
+/*******************************************************************************
+*                                                                              *
+*                                                           Smith, Phillip     *
+*                                                  smith.phillip.m@ufl.edu     *
+*                                                                              *
+*                                                             Fry, Nicolas     *
+*                                                    nicolascoding@ufl.edu     *
+*                                                                              *
+*******************************************************************************/

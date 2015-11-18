@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+
+<!------------------------------------------------------------------------------
+-                                                                              -
+-                                                           Smith, Phillip     -
+-                                                  smith.phillip.m@ufl.edu     -
+-                                                                              -
+-                                                             Fry, Nicolas     -
+-                                                    nicolascoding@ufl.edu     -
+-                                                                              -
+------------------------------------------------------------------------------->
+
+<!------------------------------------------------------------------------------
+
+  Great resources:
+
+    https://www.mysql.com/
+
+    http://expressjs.com/
+
+    https://angularjs.org/
+
+    https://nodejs.org/en/
+
+    http://getbootstrap.com/
+
+    http://www.color-hex.com/     
+
+    http://stackoverflow.com/
+
+------------------------------------------------------------------------------->
+
+<html lang = "en">
+
+  <head>
+
+    <meta charset = "utf-8">
+    <meta http-equiv = "X-UA-Compatible" content = "IE = edge">
+    <meta name = "viewport" content = "width = device-width, initial-scale = 1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name = "description" content = "cheapLIKEus - Project: CIS4301 Fall 2015">
+    <meta name = "author" content = "Phillip Smith and Nicolas Fry">
+
+    <title>cheapLIKEus</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel = "stylesheet" href = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <!-- our CSS -->
+    <link rel = "stylesheet" href = "css/index.css">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+  </head>
+
+  <body>
+
+<!-- Modals ------------------------------------------------------------------->
+
+  <!-- Modal - Sign-In -->
+    <div class = "modal fade" id = "sign_in" tabindex = "-1" role = "dialog" aria-labelledby = "sign_in"><!-- open modal -->
+      <div class = "modal-dialog" role = "document">
+        <div class = "modal-content">
+
+          <div class = "modal-header"><!-- open modal-head -->
+
+            <button type = "button" class = "close" data-dismiss = "modal" aria-label = "Close">
+              <span aria-hidden = "true">&times;</span>
+            </button>
+            <h4 class = "modal-title" id = "myModalLabel">Sign-In</h4>
+          
+          </div><!-- close modal-head -->
+
+          <div class = "modal-body"><!-- open modal-body -->                      
+            <form role = "form"><!-- open form -->
+
+              <div class = "form-group"><!-- email field -->
+                <input type = "email" id = "email" class = "form-control input-lg" placeholder = "user@somewhere.com">
+              </div><!-- email field -->
+
+              <div class = "form-group"><!-- password field -->
+               <input type = "password" class = "form-control input-lg" placeholder = "password">
+              </div><!-- password field -->
+
+            </form><!-- close form -->
+          </div><!-- close modal-body -->
+
+          <div class = "modal-footer"><!-- open modal-footer -->
+
+            <button type = "submit" class = "btn btn-default btn-block btn-lg">
+              <b>Submit</b>
+            </button>
+
+          </div><!-- close modal-footer -->
+
+        </div>
+      </div>
+    </div><!-- close modal -->
+
+
+  <!-- Modal - Sign-Up -->
+    <div class = "modal fade" id = "sign_up" tabindex = "-1" role = "dialog" aria-labelledby = "sign_up"><!-- open modal -->
+      <div class = "modal-dialog" role = "document">
+        <div class = "modal-content">
+
+          <div class = "modal-header"><!-- open modal-head -->
+
+            <button type = "button" class = "close" data-dismiss = "modal" aria-label = "Close"><span aria-hidden = "true">&times;</span></button>
+              <h4 class = "modal-title" id = "myModalLabel">Sign-Up</h4>
+
+          </div><!-- close modal-head -->
+
+          <div class = "modal-body"><!-- open modal-body -->                      
+            <form role = "form"><!-- open form -->
+
+              <div class = "form-group"><!-- password field -->
+                <input type = "name" id = "name" class = "form-control input-lg" placeholder = "Name i.e. John Doe">
+              </div><!-- password field -->
+
+              <br/><br/>
+
+              <div class = "form-group"><!-- email field -->
+                <input type = "email" class = "form-control input-lg" placeholder = "Email i.e. user@somewhere.com">
+              </div><!-- email field -->
+
+              <div class = "form-group"><!-- password field -->
+                <input type = "password" class = "form-control input-lg" placeholder = "password">
+              </div><!-- password field -->
+
+              <br/><br/>
+
+              <div class = "form-group"><!-- password field -->
+                <input type = "street" class = "form-control input-lg" placeholder = "Street address i.e. 123 Main ST">
+              </div><!-- password field -->
+
+              <div class = "form-group"><!-- password field -->
+                <input type = "city" class = "form-control input-lg" placeholder = "City i.e. Gainesville">
+              </div><!-- password field -->
+
+              <div class = "form-group"><!-- password field -->
+                <input type = "state" class = "form-control  input-lg" placeholder = "State i.e. FL">
+              </div><!-- password field -->
+
+              <div class = "form-group"><!-- password field -->
+                <input type = "zip" class = "form-control input-lg" placeholder = "Zip Code i.e. 32608">
+              </div><!-- password field -->
+
+            </form><!-- close form -->
+          </div><!-- close modal-body -->
+
+          <div class = "modal-footer"><!-- open modal-footer -->
+
+            <button type = "submit" class = "btn btn-default btn-block btn-lg">
+              <b>Submit</b>
+            </button>
+
+          </div><!-- close modal-footer -->
+
+        </div>
+      </div>
+    </div><!-- close modal -->
+
+  <!-- Modal - About -->
+    <div class = "modal fade" id = "about" tabindex = "-1" role = "dialog" aria-labelledby = "about"><!-- open modal -->
+      <div class = "modal-dialog" role = "document">
+        <div class = "modal-content">
+
+          <div class = "modal-header"><!-- open modal-head -->
+
+            <button type = "button" class = "close" data-dismiss = "modal" aria-label = "Close"><span aria-hidden = "true">&times;</span></button>
+            <h4 class = "modal-title" id = "myModalLabel">
+              <mark><i>cheap<sub>LIKE</sub>us</i></mark>
+            </h4>
+
+          </div><!-- close modal-head -->
+
+          <div class = "modal-body"><!-- open modal-body -->
+                        
+            <div>
+              <p class = "about_text">
+              <br/>
+                This is a project for University of Florida's Fall 2015 CIS4301:
+                Information and Database Systems course. The goal of this project 
+                is to develop a simple online store web app incorporating 
+                the database management skills learned in the course as well as web 
+                development skill learned during independent study.
+                <br/>
+              </p>
+            </div>
+
+          </div><!-- close modal-body -->
+
+        </div>
+      </div>
+    </div><!-- close modal -->
+
+  <!-- Modal - Contact -->
+    <div class = "modal fade" id = "contact" tabindex = "-1" role = "dialog" aria-labelledby = "contact"><!-- open modal -->
+      <div class = "modal-dialog" role = "document">
+        <div class = "modal-content">
+
+          <div class = "modal-header"><!-- open modal-head -->
+
+            <button type = "button" class = "close" data-dismiss = "modal" aria-label = "Close"><span aria-hidden = "true">&times;</span></button>
+            <h4 class = "modal-title" id = "myModalLabel">
+              Contact
+            </h4>
+
+          </div><!-- close modal-head -->
+
+          <div class = "modal-body"><!-- open modal-body -->                     
+            <div class = "panel-group" id = "accordion" role = "tablist" aria-multiselectable = "true">  
+              
+              <div class = "panel panel-default">
+                <div class = "panel-heading" role = "tab" id = "headingOne">
+                  <button class = "btn btn-default btn-block btn-lg collapsed" data-toggle = "collapse" data-parent = "#accordion" href = "#Phillip_Smith" aria-pressed = "false" aria-expanded = "false" aria-controls = "Phillip_Smith">
+                    <h4 class = "panel-title">
+                      Phillip Smith
+                    </h4>
+                  </button>
+                </div>
+
+                <div id = "Phillip_Smith" class = "panel-collapse collapse" role = "tabpanel" aria-labelledby = "headingOne">
+                  <div class = "list-group">
+    
+                    <ul class = "list-group">
+                      <li class = "list-group-item">
+                        Undergraduate, UF-CISE
+                      </li>
+
+                      <li class = "list-group-item">
+                        smith.phillip.m@ufl.edu
+                      </li>
+
+                      <li class = "list-group-item">
+                        Front-end development, some back-end, general design
+                      </li>
+                    </ul>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class = "panel panel-default">
+                <div class = "panel-heading" role = "tab" id = "headingTwo">
+                  <button class = "btn btn-default btn-block btn-lg collapsed" data-trigger = "focus" data-toggle = "collapse" data-parent = "#accordion" href = "#Nicolas_Fry" aria-pressed = "false" aria-expanded = "false" aria-controls = "Nicolas_Fry">
+                    <h4 class = "panel-title">
+                      Nicolas Fry
+                    </h4>
+                  </button>
+                </div>
+
+                <div id = "Nicolas_Fry" class = "panel-collapse collapse" role = "tabpanel" aria-labelledby = "headingTwo">
+                  <div class = "list-group">
+
+                    <ul class = "list-group">
+                      <li class = "list-group-item">
+                        Undergraduate, UF-CISE
+                      </li>
+
+                      <li class = "list-group-item">
+                        nicolascoding@ufl.edu
+                      </li>
+
+                      <li class = "list-group-item">
+                        Back-end development, some front-end
+                      </li>
+                    </ul>
+
+                  </div>
+                </div>
+              </div>
+<!--
+              <div class = "panel panel-default">
+                <div class = "panel-heading" role = "tab" id = "headingThree">
+                  <button class = "btn btn-default btn-block btn-lg collapsed" data-toggle = "collapse" data-parent = "#accordion" href = "#George_Angeles" aria-pressed = "false" aria-expanded = "false" aria-controls = "George_Angeles">
+                    <h4 class = "panel-title">
+                      George Angeles
+                    </h4>
+                  </button>
+                </div>
+
+                <div id = "George_Angeles" class = "panel-collapse collapse" role = "tabpanel" aria-labelledby = "headingThree">
+                  <div class = "list-group">
+
+                    <ul class = "list-group">
+                      <li class = "list-group-item">
+                        BS Graphic Design - Some University
+                      </li>
+
+                      <li class = "list-group-item">
+                        email@email.com
+                      </li>
+
+                      <li class = "list-group-item">
+                        Contribution: Favicon, general graphic design
+                      </li>
+                    </ul>
+
+                  </div>
+                </div>
+-->
+              </div>
+            </div>
+          </div><!-- close modal-body -->
+
+        </div>
+      </div>
+    </div><!-- close modal -->
+
+<!-- Cover -------------------------------------------------------------------->
+
+    <div class = "site-wrapper">
+
+      <div class = "site-wrapper-inner">
+
+        <div class = "cover-container">
+
+          <div class = "masthead clearfix">
+            <div class = "inner">
+<!--              
+              <h3 class="masthead-brand">
+                <mark><i>cheap<sub>LIKE</sub>us</i></mark>
+              </h3>
+-->
+              <nav>
+                <ul class = "nav masthead-nav">
+                  <li>
+                    <a href = "#" data-toggle = "modal" data-target = "#sign_in">
+                      Sign-In
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href = "#" data-toggle = "modal" data-target = "#sign_up">
+                      Sign-up
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href = "#" data-toggle = "modal" data-target = "#about">
+                      About
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href = "#" data-toggle = "modal" data-target = "#contact">
+                      Contact
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+
+            </div>
+          </div>
+
+          <div class = "inner cover">
+
+            <h1 class = "cover-heading">
+              <mark><i>cheap<sub>LIKE</sub>us</i></mark><br/><br/>
+            </h1>
+
+            <div><!-- open search container -->
+              <div class = "input-group"><!-- open search field -->
+                <input type = "text" class = "form-control input-lg" placeholder = "Search for...">
+
+                <span class = "input-group-btn">
+                  <button class = "btn btn-default btn-lg" type = "button">
+                    <b>Go!</b>
+                  </button>
+                </span>
+
+              </div><!-- close search field -->
+            </div><!-- close search container -->
+            <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+          </div>
+
+          <div class = "mastfoot">
+            <div class = "inner">
+              <p>
+                Project for 
+
+                  <a data-toggle = "tooltip" data-placement = "top" 
+                     title = "Credits: 3; Prereq: COP 3504, or COP 3503 and COT 3100.
+The first part of a two-course sequence that studies the essential 
+concepts, principles and techniques of modern database systems. 
+Topics include modeling and querying of data using conceptual data 
+models as well as the development of a database application.">
+                    <i>Database and Information Systems</i>
+                  </a>
+                  &nbsp&nbsp
+                  <a href = "http://www.ufl.edu/" title = "http://www.ufl.edu/">
+                    <span class = "badge">
+                      &nbspUF&nbsp
+                    </span>
+                  </a>
+
+                  &nbsp&nbsp
+                  <a href = "https://www.cise.ufl.edu/academics/undergrad/cse" title = "https://www.cise.ufl.edu/academics/undergrad/cse">
+                    <span class = "badge">
+                      &nbspCISE&nbsp
+                    </span>
+                  </a>
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src = "https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <!-- Project JS -->
+    <script src = "script" type = "js/index.js"></script>
+
+  </body>
+
+<!------------------------------------------------------------------------------
+-                                                                              -
+-                                                           Smith, Phillip     -
+-                                                  smith.phillip.m@ufl.edu     -
+-                                                                              -
+-                                                             Fry, Nicolas     -
+-                                                    nicolascoding@ufl.edu     -
+-                                                                              -
+------------------------------------------------------------------------------->
+
+</html>
