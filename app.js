@@ -28,7 +28,7 @@ var connectionPool = mysql.createPool({
 // connection.end();
 
 // Set server port
-app.listen(3000);
+app.listen(80);
 console.log('server is running at 127.0.0.1:80');
 
 // views as directory for all template files
@@ -92,7 +92,7 @@ app.get('/req/:itemname', function(req,res)
 	// connection.destroy();
 });
 
-app.post('/login/', function(req,res,next)
+app.post('/login/', function(req,res)
 {
 	//debug for routes to make sure everything is working properly
 	console.log('I am in the login post route');
@@ -119,7 +119,7 @@ app.post('/login/', function(req,res,next)
 			console.log('user: ' + user);
 			console.log('password: ' + password);
 
-			var query = 'select COUNT(*) AS recordCount from userTable where email = \''+user+'\' AND password = \''+password+'\' AND isStaff = 1';
+			var query = 'select COUNT(*) AS recordCount, isStaff from userTable where email = \''+user+'\' AND password = \''+password+'\'';
 			console.log(query);
 			connection.query(query, req.params.id, function(err, rows, fields)
 			{
@@ -142,22 +142,34 @@ app.post('/login/', function(req,res,next)
 					// console.log(rows[0].recordCount)
 
 					//if the return query has a user that has admin privileges, redirect them to the admin page
-					if(rows[0].recordCount >=1)
+					
+					console.log(rows[0].isStaff);
+					if(rows[0].recordCount >=1 && rows[0].isStaff == 1)
 					{
+						console.log('at least one staff record')
 						res.sendFile(__dirname + '/views/admin.html')
-						next();
+						// next();
 					}
-
-					if(rows[0].recordCount < 1)
+					else if(rows[0].recordCount >=1 && rows[0].isStaff == 0)
+					{
+						console.log('at least one nonstaff record')
+						res.sendFile(__dirname + '/views/customer.html')
+						// next();
+					}
+					else 
 					{
 						console.log('invalid login')
+						console.log('in 503 error box, invalid user')
+						res.statusCode = 503;
+						res.send({
+							statuscode: '503',
+							result: 'E-mail or Password is incorrect',
+						});
 					}
-
 				}
 			});
 			connection.release();
 		}
 	});
-	// connection.destroy();
 });
 
