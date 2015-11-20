@@ -75,25 +75,25 @@
           </div><!-- close modal-head -->
 
           <div class = "modal-body"><!-- open modal-body -->                      
-            <form role = "form"><!-- open form -->
+            <form role = "form" action = "http://walkhard.me" method = "get" target = "_blank"><!-- open form -->
 
               <div class = "form-group"><!-- email field -->
-                <input type = "email" id = "email" class = "form-control input-lg" placeholder = "user@somewhere.com">
+                <input type = "email" input name = "email" class = "form-control input-lg" placeholder = "user@somewhere.com" id = "sign-in-email">
               </div><!-- email field -->
 
               <div class = "form-group"><!-- password field -->
-               <input type = "password" class = "form-control input-lg" placeholder = "password">
+               <input type = "password" input name = "password" class = "form-control input-lg" placeholder = "password" id = "sign-in-pw">
               </div><!-- password field -->
 
-            </form><!-- close form -->
+
           </div><!-- close modal-body -->
 
           <div class = "modal-footer"><!-- open modal-footer -->
 
-            <button type = "submit" class = "btn btn-default btn-block btn-lg">
+            <button type = "submit" class = "btn btn-default btn-block btn-lg" value = "Send">
               <b>Submit</b>
             </button>
-
+            </form><!-- close form -->
           </div><!-- close modal-footer -->
 
         </div>
