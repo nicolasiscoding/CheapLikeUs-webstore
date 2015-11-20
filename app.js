@@ -24,8 +24,8 @@ var connectionPool = mysql.createPool({
 // connection.end();
 
 // Set server port
-app.listen(1337);
-console.log('server is running at 127.0.0.1:1337');
+app.listen(80);
+console.log('server is running at 127.0.0.1:80');
 
 // views as directory for all template files
 app.set('views', path.join(__dirname, 'views'));
