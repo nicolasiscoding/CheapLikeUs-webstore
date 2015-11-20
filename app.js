@@ -38,9 +38,13 @@ app.get('/', function(req, res) {
   	res.sendFile(__dirname + '/views/index.html');
 });
 
-app.get('/:itemname', function(req,res)
-{
+app.get('/:file', function(req, res) {
 	console.log('here!');
+  	res.sendFile(__dirname + '/views/' + req.params.file);
+});
+
+app.get('/req/:itemname', function(req,res)
+{
 	connectionPool.getConnection(function(err, connection)
 	{
 		if(err)
@@ -84,3 +88,4 @@ app.get('/:itemname', function(req,res)
 	});
 	// connection.destroy();
 });
+
