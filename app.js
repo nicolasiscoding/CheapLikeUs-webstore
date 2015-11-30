@@ -4,6 +4,8 @@ var app = express();
 var path = require('path');
 var bodyParser = require('body-parser');
 
+app.set('view engine', 'ejs');
+
 //tell express to use the bodyParser middleware
 app.use(bodyParser());
 
@@ -28,7 +30,7 @@ var connectionPool = mysql.createPool({
 // connection.end();
 
 // Set server port
-app.listen(80);
+app.listen(3000);
 console.log('server is running at 127.0.0.1:80');
 
 // views as directory for all template files
@@ -39,7 +41,7 @@ app.use(express.static('public'));
 
 // set routes
 app.get('/', function(req, res) {
-  	res.sendFile(__dirname + '/views/index.html');
+  	res.render(__dirname + '/views/index');
 });
 
 app.get('/:file', function(req, res) {
@@ -147,13 +149,13 @@ app.post('/login/', function(req,res)
 					if(rows[0].recordCount >=1 && rows[0].isStaff == 1)
 					{
 						console.log('at least one staff record')
-						res.sendFile(__dirname + '/views/admin.html')
+						res.render(__dirname + '/views/admin')
 						// next();
 					}
 					else if(rows[0].recordCount >=1 && rows[0].isStaff == 0)
 					{
 						console.log('at least one nonstaff record')
-						res.sendFile(__dirname + '/views/customer.html')
+						res.render(__dirname + '/views/customer')
 						// next();
 					}
 					else 
