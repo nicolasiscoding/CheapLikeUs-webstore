@@ -48,8 +48,12 @@ app.get('/:file', function(req, res) {
   	res.sendFile(__dirname + '/views/' + req.params.file);
 });
 
-app.get('/req/:itemname', function(req,res)
+
+//this is a route for the guestPage
+app.post('/req/guestItems', function(req,res)
 {
+
+	console.log('Posting items for guests!!');
 	connectionPool.getConnection(function(err, connection)
 	{
 		if(err)
@@ -64,7 +68,7 @@ app.get('/req/:itemname', function(req,res)
 		}
 		else
 		{
-			var query = 'SELECT * FROM Product WHERE name LIKE \'%' + req.params.itemname +'%\' ORDER BY ProductID asc';
+			var query = 'SELECT * FROM Product WHERE name LIKE \'%' + req.body.search +'%\' ORDER BY ProductID asc';
 			console.log(query);
 			connection.query(query, req.params.id, function(err, rows, fields)
 			{
@@ -79,13 +83,68 @@ app.get('/req/:itemname', function(req,res)
 				}
 				else
 				{
+					// res.send({
+					// 	result: 'success',
+					// 	err: 	'',
+					// 	fields: fields,
+					// 	json: 	rows,
+					// 	length: rows.length
+					// });
+
+					//For Phillip: This will go to the 'guest.ejs' and give you the rows object
+					res.render(__dirname + '/views/guest', rows)
+				}
+			});
+			connection.release();
+		}
+	});
+	// connection.destroy();
+});
+
+//this is a route for the customer page's search request
+app.post('/req/customerItems', function(req,res)
+{
+
+	console.log('Posting items for customer!!');
+	connectionPool.getConnection(function(err, connection)
+	{
+		if(err)
+		{
+			console.log('connection error: \n\n\n');
+			console.log(err);
+			res.statusCode = 503;
+			res.send({
+				result: 'error',
+				err: 	err.code
+			});
+		}
+		else
+		{
+			var query = 'SELECT * FROM Product WHERE name LIKE \'%' + req.body.search +'%\' ORDER BY ProductID asc';
+			console.log(query);
+			connection.query(query, req.params.id, function(err, rows, fields)
+			{
+				if(err)
+				{
+					console.log(err);
+					res.statusCode = 500;
 					res.send({
-						result: 'success',
-						err: 	'',
-						fields: fields,
-						json: 	rows,
-						length: rows.length
+						result: 'error',
+						err: 	err.code
 					});
+				}
+				else
+				{
+					// res.send({
+					// 	result: 'success',
+					// 	err: 	'',
+					// 	fields: fields,
+					// 	json: 	rows,
+					// 	length: rows.length
+					// });
+
+					//For Phillip: This will go to the 'customer.ejs' and give you the rows object
+					res.render(__dirname + '/views/customer', rows)
 				}
 			});
 			connection.release();

@@ -165,15 +165,16 @@
                 <ul class = "nav masthead-nav">
                   <li id = "nav-search">
                     <div><!-- open search container -->
-                      <div class = "input-group"><!-- open search field -->
-                        <input type = "text" class = "form-control" placeholder = "Search for...">
+                      <form  role = "form" action = "/req/customerItems" method = "post">
+                        <div class = "input-group"><!-- open search field -->
+                          <input type = "search" name = "search" class = "form-control" placeholder = "Search for...">
 
-                        <span class = "input-group-btn">
-                          <button class = "btn btn-default" type = "button">
-                              <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                          </button>
-                        </span>
-
+                          <span class = "input-group-btn">
+                            <button type = "submit" class = "btn btn-default" value="Send">
+                                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                            </button>
+                          </span>
+                      </form>
                       </div><!-- close search field -->
                     </div><!-- close search container -->
                   </li>
