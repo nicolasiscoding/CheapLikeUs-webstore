@@ -30,7 +30,7 @@ var connectionPool = mysql.createPool({
 // connection.end();
 
 // Set server port
-app.listen(3000);
+app.listen(80);
 console.log('server is running at 127.0.0.1:80');
 
 // views as directory for all template files
@@ -296,7 +296,7 @@ app.post('/req/customerItems', function(req,res)
 					// });
 
 					//For Phillip: This will go to the 'customer.ejs' and give you the rows object
-					res.render(__dirname + '/views/customer', rows)
+					res.render(__dirname + '/views/customer', {data: rows})
 				}
 			});
 			connection.release();
