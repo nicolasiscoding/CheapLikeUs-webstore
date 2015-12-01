@@ -1,0 +1,20 @@
+<h1 class = "cover-heading logo">
+  cheap<sub>LIKE</sub>us<br/><br/>
+</h1>
+
+<br/><br/>
+
+<div><!-- open search container -->
+<form role = "form" action = "req/guestItems" method = "post">
+  <div class = "input-group"><!-- open search field -->
+    <input type = "search" name = "search" class = "form-control input-lg" placeholder = "Search for...">
+      <span class = "input-group-btn">
+      <!-- <button type = "submit" class = "btn btn-default btn-block btn-lg" value = "Send"> -->
+
+        <button type = "submit" class = "btn btn-default btn-lg" value="Send" >
+          <b>Go!</b>
+        </button>
+      </span>
+    </form>
+  </div><!-- close search field -->
+</div><!-- close search container -->

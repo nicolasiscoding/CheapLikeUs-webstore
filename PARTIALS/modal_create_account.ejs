@@ -1,0 +1,61 @@
+<!-- Modal - Sign-Up -->
+<div class = "modal" id = "sign_up" tabindex = "-1" role = "dialog" aria-labelledby = "sign_up"><!-- open modal -->
+  <div class = "modal-dialog" role = "document">
+    <div class = "modal-content">
+
+      <div class = "modal-header"><!-- open modal-head -->
+
+        <button type = "button" class = "close" data-dismiss = "modal" aria-label = "Close"><span aria-hidden = "true">&times;</span></button>
+          <h4 class = "modal-title" id = "myModalLabel">Sign-Up</h4>
+
+      </div><!-- close modal-head -->
+
+      <div class = "modal-body"><!-- open modal-body -->                      
+        <form role = "form" action = "/createUser" method = "post"><!-- open form -->
+
+          <div class = "form-group"><!-- password field -->
+            <input type = "name" name = "usersname" id = "name" class = "form-control input-lg" placeholder = "Name i.e. John Doe">
+          </div><!-- password field -->
+
+          <br/><br/>
+
+          <div class = "form-group"><!-- email field -->
+            <input type = "email" name = "email" class = "form-control input-lg" placeholder = "Email i.e. user@somewhere.com" required>
+          </div><!-- email field -->
+
+          <div class = "form-group"><!-- password field -->
+            <input type = "password" name = "password" class = "form-control input-lg" placeholder = "password" required>
+          </div><!-- password field -->
+
+          <br/><br/>
+
+          <div class = "form-group"><!-- password field -->
+            <input type = "street" name = "street" class = "form-control input-lg" placeholder = "Street address i.e. 123 Main ST" required>
+          </div><!-- password field -->
+
+          <div class = "form-group"><!-- password field -->
+            <input type = "city" name = "city" class = "form-control input-lg" placeholder = "City i.e. Gainesville" required>
+          </div><!-- password field -->
+
+          <div class = "form-group"><!-- password field -->
+            <input type = "state" name = "state" class = "form-control  input-lg" placeholder = "State i.e. FL" required>
+          </div><!-- passwo`rd field -->
+
+          <div class = "form-group"><!-- password field -->
+            <input type = "zip" name = "zip" class = "form-control input-lg" placeholder = "Zip Code i.e. 32608" required>
+          </div><!-- password field -->
+
+      </div><!-- close modal-body -->
+
+      <div class = "modal-footer"><!-- open modal-footer -->
+
+        <button type = "submit" value = "Send" class = "btn btn-default btn-block btn-lg">
+          <b>Submit</b>
+        </button>
+
+      </div><!-- close modal-footer -->
+         </form><!-- close form -->
+
+    </div>
+  </div>
+</div><!-- close modal -->
