@@ -30,7 +30,7 @@ var connectionPool = mysql.createPool({
 // connection.end();
 
 // Set server port
-app.listen(80);
+app.listen(3000);
 console.log('server is running at 127.0.0.1:80');
 
 // views as directory for all template files
@@ -46,6 +46,157 @@ app.get('/', function(req, res) {
 
 app.get('/:file', function(req, res) {
   	res.sendFile(__dirname + '/views/' + req.params.file);
+});
+
+
+//in order to emulate synchonous behavior, I have to write everything as call back functions which may make the code messy
+app.post('/createUser', function(req,res)
+{
+	console.log('creating user!');
+
+	var usersName = req.body.usersname;
+	var email = req.body.email;
+	var password = req.body.password;
+	var street = req.body.street;
+	var city = req.body.city;
+	var state = req.body.state;
+	var zip = req.body.zip;
+	email = email.toUpperCase();
+
+	var checkIfUserExists = 'select count(*) as recordcount from userTable where email =\''+ email + '\'';
+
+
+	connectionPool.query(checkIfUserExists, function(err, rows, fields)
+	{
+		if(err)
+		{
+			console.log('connection error: \n\n\n');
+			console.log(err);
+			res.statusCode = 503;
+			res.send({
+				result: 'error',
+				err: 	err.code
+			});
+			return;
+		}
+
+		console.log('Recordcount: ' + rows[0].recordcount);
+		if(rows[0].recordcount == 1)
+		{
+			//this is a placeholder JSON for now, will incorporate render after consulting Phil
+			res.send({response: 'UserExists!'})
+
+			//res.render();
+			return;
+		}
+		else
+		{
+			//if user does not exist, figure out next ID, then create insert statement
+
+			var maxIDQuery = "select MAX(userID) +1 as nextID from userTable";
+			connectionPool.query(maxIDQuery, function(err, rows, fields)
+			{
+				if(err)
+					{
+						console.log('connection error: \n\n\n');
+						console.log(err);
+						res.statusCode = 503;
+						res.send({
+							result: 'error',
+							err: 	err.code
+						});
+						return;
+					}
+
+				var nextID = rows[0].nextID;
+				// console.log(rows[0].nextID);
+
+				var insertQuery = "INSERT INTO userTable VALUES (" + nextID +", \'" + usersName +  "\', \'" + street + " " + city + ", " + state + " " + zip +"\', \'" + email +"\', \'"+ password + "\', 0)";
+				connectionPool.query(insertQuery, function(err, rows, fields)
+				{
+					if(err)
+					{
+						console.log('connection error: \n\n\n');
+						console.log(err);
+						res.statusCode = 503;
+						res.send({
+							result: 'error',
+							err: 	err.code
+						});
+						return;
+					}
+
+					res.render(__dirname + '/views/customer');
+				});
+			});
+		}
+	});
+
+	// connectionPool.getConnection(function(err, connection)
+	// {
+	// 	if(err)
+	// 	{
+	// 		console.log('connection error: \n\n\n');
+	// 		console.log(err);
+	// 		res.statusCode = 503;
+	// 		res.send({
+	// 			result: 'error',
+	// 			err: 	err.code
+	// 		});
+	// 	}
+	// 	else
+	// 	{
+
+	// 		console.log('testroute')
+
+	// 		// console.log(usersName);
+	// 		// console.log(email);
+	// 		// console.log(password);
+	// 		// console.log(street);
+	// 		// console.log(city);
+	// 		// console.log(state);
+	// 		// console.log(zip);
+
+	// 		var checkIfUserExists = 'select count(*) as recordcount from userTable where email =\''+ email + '\'';
+
+	// 		console.log('Checking to see if user exists');
+	// 		console.log(checkIfUserExists);
+
+	// 		connection.query(checkIfUserExists, req.params.id, function(err, rows, fields)
+	// 		{
+	// 			if(err)
+	// 			{
+	// 				console.log(err);
+	// 				res.statusCode = 500;
+	// 				res.send({
+	// 					result: 'error',
+	// 					err: 	err.code
+	// 				});
+	// 			}
+	// 			else
+	// 			{
+	// 				// res.send({
+	// 				// 	result: 'success',
+	// 				// 	err: 	'',
+	// 				// 	fields: fields,
+	// 				// 	json: 	rows,
+	// 				// 	length: rows.length
+	// 				// });
+	// 				var exists = rows[0].recordcount;
+	// 				if(exists == 1)
+	// 				{
+	// 					//Here we would choose how we respond to a user who's account exists already
+	// 					// res.render()
+	// 					res.send({response: 'userexists!'});
+	// 					console.log('UserExists!');
+	// 				}
+	// 			}
+	// 		});
+	// 		connection.release();
+
+
+	// 	}
+	// });
 });
 
 
@@ -92,7 +243,8 @@ app.post('/req/guestItems', function(req,res)
 					// });
 
 					//For Phillip: This will go to the 'guest.ejs' and give you the rows object
-					res.render(__dirname + '/views/guest', rows)
+					console.log(rows);
+					res.render(__dirname + '/views/guest', {data: rows})
 				}
 			});
 			connection.release();
