@@ -1,0 +1,287 @@
+<!-- Modal - Account -->
+<div class = "modal" id = "modify" tabindex = "-1" role = "dialog" aria-labelledby = "stuff"><!-- open modal -->
+  <div class = "modal-dialog modal-lg" role = "document">
+    <div class = "modal-content">
+
+      <div class = "modal-header"><!-- open modal-head -->
+        <button type = "button" class = "close" data-dismiss = "modal" aria-label = "Close"><span aria-hidden = "true">&times;</span></button>
+          <h4 class = "modal-title" id = "myModalLabel">Modify Tables</h4>
+      </div><!-- close modal-head -->
+
+      <div class = "modal-body"><!-- open modal-body -->
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true"> <!-- Open Accordion -->
+          <div class="panel panel-default"> <!-- Open Panel -->
+            <!-- Panel Heading -->
+            <div class="panel-heading" role="tab" id="headingOne">
+              <div class="btn-group btn-group-justified">        
+                <a class="btn btn-default" role="button" data-toggle="collapse" data-parent="#accordion" href="#user" aria-expanded="false" aria-controls="email">Users</a>
+                <a class="btn btn-default" role="button" data-toggle="collapse" data-parent="#accordion" href="#add-user" aria-expanded="false" aria-controls="edit-email">ADD</a>
+                <a class="btn btn-default" role="button" data-toggle="collapse" data-parent="#accordion" href="#upd-user" aria-expanded="false" aria-controls="email">UPD</a>
+                <a class="btn btn-default" role="button" data-toggle="collapse" data-parent="#accordion" href="#del-user" aria-expanded="false" aria-controls="edit-email">DEL</a>
+              </div>
+            </div>
+
+            <!-- Panels -->
+            <div id="user" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+              <div class="panel-body">
+                USER TABLE GOES HERE
+              </div>
+            </div>
+
+            <div id="add-user" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+              <div class="panel-body">
+
+                <form>
+                  <div class = "well well-sm">
+                    Adding to User Table
+                  </div>
+                  <div class="form-group">
+                    <input type="name" class="form-control input-lg" id="exampleInputEmail1" placeholder="name">
+                  </div>
+                  <div class="form-group">
+                    <input type="address" class="form-control input-lg" id="exampleInputEmail1" placeholder="address">
+                  </div>
+                  <div class="form-group">
+                    <input type="email" class="form-control input-lg" id="exampleInputEmail1" placeholder="email">
+                  </div>
+                  <div class="form-group">
+                    <input type="password" class="form-control input-lg" id="exampleInputPassword1" placeholder="password">
+                  </div>
+                  <div class="form-group">
+                    <input type="isStaff" class="form-control input-lg" id="exampleInputEmail1" placeholder="isStaff">
+                  </div>
+                  <button type="submit" class="btn btn-default btn-block btn-lg">Add</button>
+                </form>
+
+              </div>
+            </div>
+
+            <div id="upd-user" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+              <div class="panel-body">
+
+                <form>
+                  <div class = "well well-sm">
+                    Updating User Table
+                  </div>
+                  <div class="form-group">
+                    <input type="userID" class="form-control input-lg" id="exampleInputEmail1" placeholder="userID">
+                  </div>   
+                  <div class="form-group">
+                    <input type="name" class="form-control input-lg" id="exampleInputEmail1" placeholder="name">
+                  </div>
+                  <div class="form-group">
+                    <input type="address" class="form-control input-lg" id="exampleInputEmail1" placeholder="address">
+                  </div>
+                  <div class="form-group">
+                    <input type="email" class="form-control input-lg" id="exampleInputEmail1" placeholder="email">
+                  </div>
+                  <div class="form-group">
+                    <input type="password" class="form-control input-lg" id="exampleInputPassword1" placeholder="password">
+                  </div>
+                  <div class="form-group">
+                    <input type="isStaff" class="form-control input-lg" id="exampleInputEmail1" placeholder="isStaff">
+                  </div>
+                  <button type="submit" class="btn btn-default btn-block btn-lg">Update</button>
+                </form>
+
+              </div>
+            </div>
+
+            <div id="del-user" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+              <div class="panel-body">
+
+                <form>
+                  <div class = "well well-sm">
+                    Deleting from User Table
+                  </div>
+                  <div class="form-group">
+                    <input type="userID" class="form-control input-lg" id="exampleInputEmail1" placeholder="userID">
+                  </div>                  
+                  <div class="form-group">
+                    <input type="name" class="form-control input-lg" id="exampleInputEmail1" placeholder="name">
+                  </div>
+                  <div class="form-group">
+                    <input type="address" class="form-control input-lg" id="exampleInputEmail1" placeholder="address">
+                  </div>
+                  <button type="submit" class="btn btn-default btn-block btn-lg">Delete</button>
+                </form>
+
+              </div>
+            </div>
+          </div> <!-- Close Panel -->
+
+          <div class="panel panel-default"> <!-- Open Panel -->
+             <!-- Panel Heading -->
+            <div class="panel-heading" role="tab" id="headingOne">
+              <div class="btn-group btn-group-justified">        
+                <a class="btn btn-default" role="button" data-toggle="collapse" data-parent="#accordion" href="#order" aria-expanded="false" aria-controls="email">Order</a>
+                <a class="btn btn-default" role="button" data-toggle="collapse" data-parent="#accordion" href="#add-order" aria-expanded="false" aria-controls="edit-email">ADD</a>
+                <a class="btn btn-default" role="button" data-toggle="collapse" data-parent="#accordion" href="#upd-order" aria-expanded="false" aria-controls="email">UPD</a>
+                <a class="btn btn-default" role="button" data-toggle="collapse" data-parent="#accordion" href="#del-order" aria-expanded="false" aria-controls="edit-email">DEL</a>
+              </div>
+            </div>
+
+            <!-- Panels -->
+            <div id="order" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+              <div class="panel-body">
+                ORDER TABLE GOES HERE
+              </div>
+            </div>
+
+            <div id="add-order" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+              <div class="panel-body">
+
+                <form>
+                  <div class = "well well-sm">
+                    Adding to Order Table
+                  </div>
+                  <div class="form-group">
+                    <input type="email" class="form-control input-lg" id="exampleInputEmail1" placeholder="new_email@email.com">
+                  </div>
+                  <div class="form-group">
+                    <input type="password" class="form-control input-lg" id="exampleInputPassword1" placeholder="You must enter your current password to make changes">
+                  </div>
+                  <button type="submit" class="btn btn-default btn-block btn-lg">Add</button>
+                </form>
+
+              </div>
+            </div>
+
+            <div id="upd-order" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+              <div class="panel-body">
+
+                <form>
+                  <div class = "well well-sm">
+                    Updating Order Table
+                  </div>
+                  <div class="form-group">
+                    <input type="date" class="form-control input-lg" id="exampleInputEmail1" placeholder="date">
+                  </div>
+                  <div class="form-group">
+                    <input type="paid" class="form-control input-lg" id="exampleInputPassword1" placeholder="paid">
+                  </div>
+                  <button type="submit" class="btn btn-default btn-block btn-lg">Update</button>
+                </form>
+
+              </div>
+            </div>
+
+            <div id="del-order" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+              <div class="panel-body">
+
+                <form>
+                  <div class = "well well-sm">
+                    Deleting from Order Table
+                  </div>
+                  <div class="form-group">
+                    <input type="orderID" class="form-control input-lg" id="exampleInputEmail1" placeholder="orderID">
+                  </div>
+                  <button type="submit" class="btn btn-default btn-block btn-lg">Delete</button>
+                </form>
+
+              </div>
+            </div>
+          </div> <!-- Close Panel -->
+
+          <div class="panel panel-default"> <!-- Open Panel -->
+            <!-- Panel Heading -->
+            <div class="panel-heading" role="tab" id="headingOne">
+              <div class="btn-group btn-group-justified">        
+                <a class="btn btn-default" role="button" data-toggle="collapse" data-parent="#accordion" href="#product" aria-expanded="false" aria-controls="email">Product</a>
+                <a class="btn btn-default" role="button" data-toggle="collapse" data-parent="#accordion" href="#add-product" aria-expanded="false" aria-controls="edit-email">ADD</a>
+                <a class="btn btn-default" role="button" data-toggle="collapse" data-parent="#accordion" href="#upd-product" aria-expanded="false" aria-controls="email">UPD</a>
+                <a class="btn btn-default" role="button" data-toggle="collapse" data-parent="#accordion" href="#del-product" aria-expanded="false" aria-controls="edit-email">DEL</a>
+              </div>
+            </div>
+
+            <!-- Panels -->
+            <div id="product" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+              <div class="panel-body">
+                PRODUCT TABLE GOES HERE
+              </div>
+            </div>
+
+            <div id="add-product" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+              <div class="panel-body">
+
+                <form>
+                  <div class = "well well-sm">
+                    Adding to Product Table
+                  </div>
+                  <div class="form-group">
+                    <input type="name" class="form-control input-lg" id="exampleInputEmail1" placeholder="name">
+                  </div>
+                  <div class="form-group">
+                    <input type="price" class="form-control input-lg" id="exampleInputEmail1" placeholder="price">
+                  </div>
+                  <div class="form-group">
+                    <input type="stockquantity" class="form-control input-lg" id="exampleInputEmail1" placeholder="stockquantity">
+                  </div>
+                  <div class="form-group">
+                    <input type="description" class="form-control input-lg" id="exampleInputPassword1" placeholder="description">
+                  </div>
+                  <div class="form-group">
+                    <input type="active" class="form-control input-lg" id="exampleInputEmail1" placeholder="active">
+                  </div>
+                  <button type="submit" class="btn btn-default btn-block btn-lg">Add</button>
+                </form>
+
+              </div>
+            </div>
+
+            <div id="upd-product" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+              <div class="panel-body">
+
+                <form>
+                  <div class = "well well-sm">
+                    Updating Product Table
+                  </div>
+                  <div class="form-group">
+                    <input type="productID" class="form-control input-lg" id="exampleInputEmail1" placeholder="productID">
+                  </div>
+                  <div class="form-group">
+                    <input type="name" class="form-control input-lg" id="exampleInputEmail1" placeholder="name">
+                  </div>
+                  <div class="form-group">
+                    <input type="price" class="form-control input-lg" id="exampleInputEmail1" placeholder="price">
+                  </div>
+                  <div class="form-group">
+                    <input type="stockquantity" class="form-control input-lg" id="exampleInputEmail1" placeholder="stockquantity">
+                  </div>
+                  <div class="form-group">
+                    <input type="description" class="form-control input-lg" id="exampleInputPassword1" placeholder="description">
+                  </div>
+                  <div class="form-group">
+                    <input type="active" class="form-control input-lg" id="exampleInputEmail1" placeholder="active">
+                  </div>
+                  <button type="submit" class="btn btn-default btn-block btn-lg">Update</button>
+                </form>
+
+              </div>
+            </div>
+
+            <div id="del-product" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+              <div class="panel-body">
+
+                <form>
+                  <div class = "well well-sm">
+                    Deleting from Product Table
+                  </div>
+                  <div class="form-group">
+                    <input type="productID" class="form-control input-lg" id="exampleInputEmail1" placeholder="productID">
+                  </div>
+                  <div class="form-group">
+                    <input type="name" class="form-control input-lg" id="exampleInputEmail1" placeholder="name">
+                  </div>
+                  <button type="submit" class="btn btn-default btn-block btn-lg">Delete</button>
+                </form>
+
+              </div>
+            </div>
+          </div> <!-- Close Panel -->
+        </div> <!-- Close Accordion -->
+      </div><!-- close modal-body -->
+
+    </div>
+  </div>
+</div><!-- close modal -->

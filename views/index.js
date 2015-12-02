@@ -8,20 +8,19 @@
 *                                                                              *
 *******************************************************************************/
 
-(function() {
+(function(){
+console.log("INSIDE THE FUNCTION, BITCHES!");
 
-  if(flag === 0) {
+var product = 21;
 
-    $(document).ready(function(){
-      
-      $('#sign_in').modal('show');
-
-    });  
-
-  }
-
+console.log(product);
+/*
+var app = angular.module("currencyApp", []);
+app.controller = ("currencyController", function(){
+  this.product = products;
+});
+*/
 })();
-
 
 /*******************************************************************************
 *                                                                              *

@@ -203,6 +203,10 @@ body {
     font-style: italic;
 }
 
+.jumbotron {
+  color: #2e2e2e !important;
+  background-color: #eaeaea !important;
+}
 /*-- modal styling -----------------------------------------------------------*/
 
 .modal-dialog {
@@ -278,11 +282,28 @@ body {
 
 /*-- list item styling (collapseable list) -----------------------------------*/
 
-.list-group-item {
+#contact-list {
   color: #0069e7 !important;
   background-color: #e0e0e0 !important;
   text-align: left;
   font-style: italic;
+}
+
+#results-list {
+  color: #2e2e2e !important;
+  background-color: #eaeaea;
+}
+
+#row-name {
+  text-align: left !important;
+}
+
+#row-desc {
+  text-align: left !important;
+}
+
+#row-price {
+  text-align: right !important;
 }
 
 .form-control {
