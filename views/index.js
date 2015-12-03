@@ -9,11 +9,8 @@
 *******************************************************************************/
 
 (function(){
-console.log("INSIDE THE FUNCTION, BITCHES!");
+console.log("Java Script Check");
 
-var product = 21;
-
-console.log(product);
 /*
 var app = angular.module("currencyApp", []);
 app.controller = ("currencyController", function(){
