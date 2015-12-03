@@ -30,7 +30,7 @@ var connectionPool = mysql.createPool({
 // connection.end();
 
 // Set server port
-app.listen(80);
+app.listen(3000);
 console.log('server is running at 127.0.0.1:80');
 
 // views as directory for all template files
@@ -46,6 +46,98 @@ app.get('/', function(req, res) {
 
 app.get('/:file', function(req, res) {
   	res.sendFile(__dirname + '/views/' + req.params.file);
+});
+
+//addUser
+app.post('/admin/addUser', function(req,res)
+{
+	console.log('creating user!');
+
+	var usersName = req.body.usersName;
+	var email = req.body.email;
+	var password = req.body.password;
+	var street = req.body.address;
+	var isStaff = req.body.isStaff;
+	console.log('Staff: ' + isStaff);
+	email = email.toUpperCase();
+
+	var checkIfUserExists = 'select count(*) as recordcount from userTable where email =\''+ email + '\'';
+
+
+	connectionPool.query(checkIfUserExists, function(err, rows, fields)
+	{
+		if(err)
+		{
+			console.log('connection error: \n\n\n');
+			console.log(err);
+			res.statusCode = 503;
+			res.send({
+				result: 'error',
+				err: 	err.code
+			});
+			return;
+		}
+
+		console.log('Recordcount: ' + rows[0].recordcount);
+		if(rows[0].recordcount == 1)
+		{
+			//this is a placeholder JSON for now, will incorporate render after consulting Phil
+			res.send({response: 'UserExists!'})
+
+			//res.render();
+			return;
+		}
+		else
+		{
+			//if user does not exist, figure out next ID, then create insert statement
+
+			var maxIDQuery = "select MAX(userID) +1 as nextID from userTable";
+			connectionPool.query(maxIDQuery, function(err, rows, fields)
+			{
+				if(err)
+					{
+						console.log('connection error: \n\n\n');
+						console.log(err);
+						res.statusCode = 503;
+						res.send({
+							result: 'error',
+							err: 	err.code
+						});
+						return;
+					}
+
+				var nextID = rows[0].nextID;
+				// console.log(rows[0].nextID);
+
+				var insertQuery = "INSERT INTO userTable VALUES (" + nextID +", \'" + usersName +  "\', \'" + street +"\', \'"+ email + "\', \'"+password + "\', "+ isStaff + ")";
+				console.log(insertQuery);
+				connectionPool.query(insertQuery, function(err, rows, fields)
+				{
+					if(err)
+					{
+						console.log('connection error: \n\n\n');
+						console.log(err);
+						res.statusCode = 503;
+						res.send({
+							result: 'error',
+							err: 	err.code
+						});
+						res.render(__dirname + '/views/admin')
+						return;
+					}
+				});
+
+				res.render(__dirname + '/views/admin')
+			});
+		}
+	});
+});
+
+//update
+app.post('admin/updateUser', function(req,res)
+{
+	// var query = UPDATE userTable set name = 'Sal', address = '456 M St.', email ='sal@email.com', password = 'password', isStaff = 0 WHERE userID = 10;
+
 });
 
 
@@ -266,7 +358,7 @@ app.post('/req/guestItems', function(req,res)
 					//For Phillip: This will go to the 'guest.ejs' and give you the rows object
 					console.log(rows);
 
-					res.render(__dirname + '/views/guest', {data: rows})
+					res.render(__dirname + '/views/guest', {data: rows});
 				}
 			});
 			connection.release();
@@ -373,18 +465,18 @@ app.post('/login/', function(req,res)
 					console.log(rows[0].isStaff);
 					if(rows[0].recordCount >=1 && rows[0].isStaff == 1)
 					{
-						console.log('at least one staff record')
-						res.render(__dirname + '/views/admin')
+						console.log('at least one staff record');
+						res.render(__dirname + '/views/admin');
 						// next();
 					}
 					else if(rows[0].recordCount >=1 && rows[0].isStaff == 0)
 					{
 
-						console.log('at least one nonstaff record')
+						console.log('at least one nonstaff record');
 
 						//query for all 
 						var query = 'SELECT * FROM Product WHERE name LIKE \'%%\' ORDER BY ProductID asc';
-						console.log(query);
+						// console.log(query);
 						connection.query(query, req.params.id, function(err, rows, fields)
 						{
 							if(err)
@@ -399,7 +491,9 @@ app.post('/login/', function(req,res)
 							else
 							{
 								//For Phillip: This will go to the 'customer.ejs' and give you the rows object
-								res.render(__dirname + '/views/customer', {data: rows})
+								
+								console.log(rows);
+								res.render(__dirname + '/views/customer' , {data: rows});
 							}
 						});
 						// next();
