@@ -125,9 +125,30 @@ app.post('/createUser', function(req,res)
 						});
 						return;
 					}
-
-					res.render(__dirname + '/views/customer');
 				});
+
+				//query for all 
+				var query = 'SELECT * FROM Product WHERE name LIKE \'%%\' ORDER BY ProductID asc';
+				console.log(query);
+				connectionPool.query(query, function(err, rows, fields)
+				{
+					if(err)
+					{
+						console.log(err);
+						res.statusCode = 500;
+						res.send({
+							result: 'error',
+							err: 	err.code
+						});
+					}
+					else
+					{
+						//For Phillip: This will go to the 'customer.ejs' and give you the rows object
+						res.render(__dirname + '/views/customer', {data: rows})
+					}
+				});
+
+
 			});
 		}
 	});
@@ -244,6 +265,7 @@ app.post('/req/guestItems', function(req,res)
 
 					//For Phillip: This will go to the 'guest.ejs' and give you the rows object
 					console.log(rows);
+
 					res.render(__dirname + '/views/guest', {data: rows})
 				}
 			});
@@ -287,14 +309,6 @@ app.post('/req/customerItems', function(req,res)
 				}
 				else
 				{
-					// res.send({
-					// 	result: 'success',
-					// 	err: 	'',
-					// 	fields: fields,
-					// 	json: 	rows,
-					// 	length: rows.length
-					// });
-
 					//For Phillip: This will go to the 'customer.ejs' and give you the rows object
 					res.render(__dirname + '/views/customer', {data: rows})
 				}
@@ -365,8 +379,29 @@ app.post('/login/', function(req,res)
 					}
 					else if(rows[0].recordCount >=1 && rows[0].isStaff == 0)
 					{
+
 						console.log('at least one nonstaff record')
-						res.render(__dirname + '/views/customer')
+
+						//query for all 
+						var query = 'SELECT * FROM Product WHERE name LIKE \'%%\' ORDER BY ProductID asc';
+						console.log(query);
+						connection.query(query, req.params.id, function(err, rows, fields)
+						{
+							if(err)
+							{
+								console.log(err);
+								res.statusCode = 500;
+								res.send({
+									result: 'error',
+									err: 	err.code
+								});
+							}
+							else
+							{
+								//For Phillip: This will go to the 'customer.ejs' and give you the rows object
+								res.render(__dirname + '/views/customer', {data: rows})
+							}
+						});
 						// next();
 					}
 					else 
