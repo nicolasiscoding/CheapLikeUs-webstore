@@ -9,93 +9,105 @@
       </div><!-- close modal-head -->
 
       <div class = "modal-body"><!-- open modal-body -->
-        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true"> <!-- Open Accordion -->
-          <div class="panel panel-default"> <!-- Open Panel -->
+        <div class = "panel-group" id = "accordion" role = "tablist" aria-multiselectable = "true"> <!-- Open Accordion -->
+          <div class = "panel panel-default"> <!-- Open Panel -->
             <!-- Panel Heading -->
-            <div class="panel-heading" role="tab" id="headingOne">
-              <div class="btn-group btn-group-justified">        
-                <a class="btn btn-default" role="button" data-toggle="collapse" data-parent="#accordion" href="#email" aria-expanded="false" aria-controls="email">email</a>
-                <a class="btn btn-default" role="button" data-toggle="collapse" data-parent="#accordion" href="#edit-email" aria-expanded="false" aria-controls="edit-email">edit</a>
+            <div class = "panel-heading" role = "tab" id = "headingOne">
+              <div class = "btn-group btn-group-justified">        
+                <a class = "btn btn-default" role = "button" data-toggle = "collapse" data-parent = "#accordion" href = "#email" aria-expanded = "false" aria-controls = "email">email</a>
+                <a class = "btn btn-default" role = "button" data-toggle = "collapse" data-parent = "#accordion" href = "#edit-email" aria-expanded = "false" aria-controls = "edit-email">edit</a>
               </div>
             </div>
 
             <!-- Panels -->
-            <div id="email" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-              <div class="panel-body">
+            <div id = "email" class = "panel-collapse collapse" role = "tabpanel" aria-labelledby = "headingOne">
+              <div class = "panel-body">
                 email@email.com
               </div>
             </div>
 
-            <div id="edit-email" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-              <div class="panel-body">
+            <div id = "edit-email" class = "panel-collapse collapse" role = "tabpanel" aria-labelledby = "headingOne">
+              <div class = "panel-body">
 
-                <form>
+                <form role = "form" action = "/login/" method = "post">
                   <div class = "well well-sm">
                     Editing Email Address
                   </div>
-                  <div class="form-group">
-                    <input type="email" class="form-control input-lg" id="exampleInputEmail1" placeholder="new_email@email.com">
+                  <div class = "form-group">
+                    <input type = "newemail" name = "newemail" class = "form-control input-lg" id = "exampleInputEmail1" placeholder = "new_email@email.com">
                   </div>
-                  <div class="form-group">
-                    <input type="password" class="form-control input-lg" id="exampleInputPassword1" placeholder="You must enter your current password to make changes">
+                  <div>
+                    <hr>
+                  <div>
+                  <div class = "form-group">
+                    <input type = "email" name = "email" class = "form-control input-lg" id = "exampleInputEmail1" placeholder = "Enter your current email to make changes">
                   </div>
-                  <button type="submit" class="btn btn-default btn-block btn-lg">Submit</button>
+                  <div class = "form-group">
+                    <input type = "password" class = "form-control input-lg" id = "exampleInputPassword1" placeholder = "Enter your current password to make changes">
+                  </div>
+                  <button type = "submit" class = "btn btn-default btn-block btn-lg" value = "Send">Submit</button>
                 </form>
 
               </div>
             </div>
           </div> <!-- Close Panel -->
 
-          <div class="panel panel-default"> <!-- Open Panel -->
+          <div class = "panel panel-default"> <!-- Open Panel -->
             <!-- Panel Heading -->
-            <div class="panel-heading" role="tab" id="headingOne">
-              <div class="btn-group btn-group-justified">        
-                <a class="btn btn-default" role="button" data-toggle="collapse" data-parent="#accordion" href="#" aria-expanded="false" aria-controls="email">password</a>
-                <a class="btn btn-default" role="button" data-toggle="collapse" data-parent="#accordion" href="#edit-password" aria-expanded="false" aria-controls="edit-email">edit</a>
+            <div class = "panel-heading" role = "tab" id = "headingOne">
+              <div class = "btn-group btn-group-justified">        
+                <a class = "btn btn-default" role = "button" data-toggle = "collapse" data-parent = "#accordion" href = "#" aria-expanded = "false" aria-controls = "email">password</a>
+                <a class = "btn btn-default" role = "button" data-toggle = "collapse" data-parent = "#accordion" href = "#edit-password" aria-expanded = "false" aria-controls = "edit-email">edit</a>
               </div>
             </div>
 
             <!-- Panels -->
-            <div id="edit-password" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-              <div class="panel-body">
+            <div id = "edit-password" class = "panel-collapse collapse" role = "tabpanel" aria-labelledby = "headingOne">
+              <div class = "panel-body">
 
-                <form>
+                <form role = "form" action = "/login/" method = "post">
                   <div class = "well well-sm">
                     Editing Password
                   </div>
-                  <div class="form-group">
-                    <input type="password" class="form-control input-lg" id="exampleInputEmail1" placeholder="Enter your new password here">
+                  <div class = "form-group">
+                    <input type = "newpassword" name = "newpassword" class = "form-control input-lg" id = "exampleInputEmail1" placeholder = "Enter your new password here">
                   </div>
-                  <div class="form-group">
-                    <input type="password" class="form-control input-lg" id="exampleInputPassword1" placeholder="You must enter your current password to make changes">
+                  <div>
+                    <hr>
+                  <div>
+                  <div class = "form-group">
+                    <input type = "email" name = "email" class = "form-control input-lg" id = "exampleInputEmail1" placeholder = "Enter your current email to make changes">
                   </div>
-                  <button type="submit" class="btn btn-default btn-block btn-lg">Submit</button>
+                  <div class = "form-group">
+                    <input type = "password" name = "password" class = "form-control input-lg" id = "exampleInputPassword1" placeholder = "Enter your current password to make changes">
+                  </div>
+                  <button type = "submit" class = "btn btn-default btn-block btn-lg" value = "Send">Submit</button>
                 </form>
 
               </div>
             </div>
           </div> <!-- Close Panel -->
 
-          <div class="panel panel-default"> <!-- Open Panel -->
+          <div class = "panel panel-default"> <!-- Open Panel -->
             <!-- Panel Heading -->
-            <div class="panel-heading" role="tab" id="headingOne">
-              <div class="btn-group btn-group-justified">        
-                <a class="btn btn-default" role="button" data-toggle="collapse" data-parent="#accordion" href="#address" aria-expanded="false" aria-controls="email">address</a>
-                <a class="btn btn-default" role="button" data-toggle="collapse" data-parent="#accordion" href="#edit-address" aria-expanded="false" aria-controls="edit-email">edit</a>
+            <div class = "panel-heading" role = "tab" id = "headingOne">
+              <div class = "btn-group btn-group-justified">        
+                <a class = "btn btn-default" role = "button" data-toggle = "collapse" data-parent = "#accordion" href = "#address" aria-expanded = "false" aria-controls = "email">address</a>
+                <a class = "btn btn-default" role = "button" data-toggle = "collapse" data-parent = "#accordion" href = "#edit-address" aria-expanded = "false" aria-controls = "edit-email">edit</a>
               </div>
             </div>
 
             <!-- Panels -->
-            <div id="address" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-              <div class="panel-body">
+            <div id = "address" class = "panel-collapse collapse" role = "tabpanel" aria-labelledby = "headingOne">
+              <div class = "panel-body">
                 address
               </div>
             </div>
 
-            <div id="edit-address" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-              <div class="panel-body">
+            <div id = "edit-address" class = "panel-collapse collapse" role = "tabpanel" aria-labelledby = "headingOne">
+              <div class = "panel-body">
 
-                <form>
+                <form role = "form" action = "/login/" method = "post">
                   <div class = "well well-sm">
                     Editing Address
                   </div>
@@ -114,11 +126,42 @@
                   <div class = "form-group"><!-- password field -->
                     <input type = "zip" name = "zip" class = "form-control input-lg" placeholder = "New zip code" required>
                   </div><!-- password field -->
-
-                  <div class="form-group">
-                    <input type="password" class="form-control input-lg" id="exampleInputPassword1" placeholder="You must enter your current password to make changes">
+                  <div>
+                    <hr>
+                  <div>
+                  <div class = "form-group">
+                    <input type = "email" name = "email" class = "form-control input-lg" id = "exampleInputEmail1" placeholder = "Enter your current email to make changes">
                   </div>
-                  <button type="submit" class="btn btn-default btn-block btn-lg">Submit</button>
+                  <div class = "form-group">
+                    <input type = "password" name = "email" class = "form-control input-lg" id = "exampleInputPassword1" placeholder = "Enter your current password to make changes">
+                  </div>
+                  <button type = "submit" class = "btn btn-default btn-block btn-lg" value = "Send">Submit</button>
+                </form>
+
+              </div>
+            </div>
+          </div> <!-- Close Panel -->
+
+          <div class = "panel panel-default"> <!-- Open Panel -->
+            <!-- Panel Heading -->
+            <div class = "panel-heading" role = "tab" id = "headingOne">
+              <div class = "btn-group btn-group-justified">        
+                <a class = "btn btn-default" role = "button" data-toggle = "collapse" data-parent = "#accordion" href = "#del-account" aria-expanded = "false" aria-controls = "edit-email">Delete Account</a>
+              </div>
+            </div>
+
+            <!-- Panels -->
+            <div id = "del-account" class = "panel-collapse collapse" role = "tabpanel" aria-labelledby = "headingOne">
+              <div class = "panel-body">
+
+                <form role = "form" action = "/login/" method = "post">
+                  <div class = "form-group">
+                    <input type = "email" name = "email" class = "form-control input-lg" id = "exampleInputEmail1" placeholder = "Enter your current email to make changes">
+                  </div>
+                  <div class = "form-group">
+                    <input type = "password" name = "password" class = "form-control input-lg" id = "exampleInputPassword1" placeholder = "Enter your current password to make changes">
+                  </div>
+                  <button type = "submit" class = "btn btn-default btn-block btn-lg btn-danger" value = "Send">Delete Account</button>
                 </form>
 
               </div>
