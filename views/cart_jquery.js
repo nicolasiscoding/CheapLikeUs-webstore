@@ -102,7 +102,14 @@ $("#end-cart").on("click", ".submit-cart", function(event)
 
     $.post("/user/checkout", { email: email, password: pass, cart: items }).done(function(data)
         {
-            alert("Data Loaded: " + data);
+            if(!data.CustomerNumber)
+            {
+                alert('Invalid Username and/or Password');
+            }
+            else
+            {
+                alert("Receipt:\nUserID:" + data.CustomerNumber+ "\nReceiptNum:" + data.ReceiptNum + "\nBilledAmount:" + data.BilledAmount);
+            }
         });
 
     // displayCart();

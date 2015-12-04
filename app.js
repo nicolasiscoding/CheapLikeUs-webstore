@@ -752,10 +752,138 @@ app.post('/user/checkout', function(req,res)
 	var password = req.body.password;
 	var cart = req.body.cart;
 
+	var grandTotal = 0;
 	for(var i = 0; i < cart.length; i++)
 	{
-		console.log(cart[i]);
+		console.log(cart[i].total);
+		grandTotal+=Number(cart[i].total);
 	}
 
+	console.log(grandTotal);
+	// console.log(Date.now())
 
+	//nextID
+	var maxIDQuery = 'select MAX(id)+1 as maxID FROM orderTable';
+	connectionPool.query(maxIDQuery, function(err,rows,fields)
+	{
+		if(err)
+		{
+			console.log('connection error: \n\n\n');
+			console.log(err);
+			res.statusCode = 503;
+			res.send({
+				result: 'error',
+				err: 	err.code
+			});
+			return;
+		}
+
+		var orderID = rows[0].maxID;
+		var userIDquery = 'SELECT userID FROM userTable WHERE email = \'' + email +'\' AND password = \''+ password +'\'';
+		connectionPool.query(userIDquery, function(err, rows, fields)
+		{
+			if(err)
+			{
+				console.log('connection error: \n\n\n');
+				console.log(err);
+				res.statusCode = 503;
+				res.send({
+					result: 'error',
+					err: 	err.code
+				});
+				return;
+			}
+			if(!rows[0])
+			{
+				res.send(
+				{
+					result: 'Invalid username/password'
+				});
+				console.log('invalidUser/Pass');
+				return;
+			}
+
+			var userID = rows[0].userID;
+			var insertIntoOrderTable = 'INSERT INTO orderTable Values('+ orderID+', (SELECT NOW()), 1)';
+			console.log(insertIntoOrderTable);
+			connectionPool.query(insertIntoOrderTable, function(err,rows,fields)
+				{
+					if(err)
+					{
+						console.log('connection error: \n\n\n');
+						console.log(err);
+						res.statusCode = 503;
+						res.send({
+							result: 'error',
+							err: 	err.code
+						});
+						return;
+					}
+
+					var insertIntouserOrderTable = 'INSERT INTO userorderTable Values('+ orderID + ','+ userID + ')';
+					console.log(insertIntouserOrderTable);
+					connectionPool.query(insertIntouserOrderTable, function(err,rows,fields)
+						{
+							if(err)
+							{
+								console.log('connection error: \n\n\n');
+								console.log(err);
+								res.statusCode = 503;
+								res.send({
+									result: 'error',
+									err: 	err.code
+								});
+								return;
+							}
+						});
+
+
+
+
+					res.send({
+						CustomerNumber: userID,
+						ReceiptNum: orderID,
+						BilledAmount: grandTotal
+					});
+
+					for(var i =0; i < cart.length; i++)
+					{
+						var Pid = cart[i].pid;
+						var newQuantQuery = 'SELECT (stockquantity-1) AS s, ProductID FROM Product WHERE ProductID =' + Pid;
+						connectionPool.query(newQuantQuery, function(err,rows,fields)
+						{
+								if(err)
+								{
+									console.log('connection error: \n\n\n');
+									console.log(err);
+									res.statusCode = 503;
+									res.send({
+										result: 'error',
+										err: 	err.code
+									});
+								}
+
+								var productIDscoped = rows[0].ProductID;
+								var newQuant = rows[0].s;
+								var updateQuant = 'UPDATE Product SET stockquantity ='+ newQuant +' WHERE ProductID =' + productIDscoped;
+								connectionPool.query(updateQuant, function(err,rows,fields)
+								{
+									if(err)
+									{
+										console.log('connection error: \n\n\n');
+										console.log(err);
+										res.statusCode = 503;
+										res.send({
+											result: 'error',
+											err: 	err.code
+										});
+									}								
+								});
+						});
+					}
+
+				});
+
+		});
+	});
 });
