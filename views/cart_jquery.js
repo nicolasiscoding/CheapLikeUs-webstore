@@ -23,6 +23,7 @@ $(".add-to-cart").click(function(event){
     event.preventDefault();
     var name = $(this).attr("data-name");
     var price = Number($(this).attr("data-price"));
+    var stock = Number($(this).attr("data-stock"));
     shoppingCart.addItemToCart(name, price, 1);
     displayCart();
 });
