@@ -12,15 +12,21 @@
           <li class = "list-group-item" id = "results-list" >
             <div class = "row">
 
-              <div class = "col-xs-5 col-md-3" id = "row-name">
+              <div class = "col-xs-1 col-md-1">
+                <button type="button" class="btn btn-default add-to-cart" data-name="<%= row.name %>" data-price="<%= row.price %>" aria-label="Left Align">
+                  <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+                </button>
+              </div>              
+
+              <div class = "col-xs-5 col-md-3 pull-left">
                 <%= row.name %>
               </div>
 
-              <div class = "col-xs-9 col-md-7" id = "row-desc">
+              <div class = "col-xs-8 col-md-6 pull-left">
                 <%= row.description %>
               </div>
 
-              <div class = "col-xs-4 col-md-2" id = "row-price">
+              <div class = "col-xs-4 col-md-2 pull-right">
                 $ <%= row.price %>   
               </div>
 
