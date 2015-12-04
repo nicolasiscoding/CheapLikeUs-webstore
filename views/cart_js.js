@@ -47,23 +47,28 @@ var shoppingCart = (function () {
     // Public methods and properties
     var obj = {};
 
-    obj.addItemToCart = function (name, price, count) {
+    obj.addItemToCart = function (name, price, count, stock, pid) {
         for (var i in cart) {
             if (cart[i].name === name) {
-                cart[i].count += count;
+                if (cart[i].count === stock) {
+                  cart[i].count == count;
+                }
+                else {
+                  cart[i].count += count;
+                }
                 saveCart();
                 return;
             }
         }
 
-        console.log("addItemToCart:", name, price, count);
+        console.log("addItemToCart:", name, price, count, stock);
 
-        var item = new Item(name, price, count);
+        var item = new Item(pid, name, price, count);
         cart.push(item);
         saveCart();
     };
 
-    obj.setCountForItem = function (name, count) {
+    obj.setCountForItem = function (name, count, stock) {
         for (var i in cart) {
             if (cart[i].name === name) {
                 cart[i].count = count;

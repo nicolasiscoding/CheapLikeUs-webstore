@@ -24,7 +24,8 @@ $(".add-to-cart").click(function(event){
     var name = $(this).attr("data-name");
     var price = Number($(this).attr("data-price"));
     var stock = Number($(this).attr("data-stock"));
-    shoppingCart.addItemToCart(name, price, 1);
+    var pid = Number($(this).attr("data-pid"));
+    shoppingCart.addItemToCart(name, price, 1, stock, pid);
     displayCart();
 });
 $("#clear-cart").click(function(event){
@@ -67,7 +68,9 @@ $("#show-cart").on("click", ".subtract-item", function(event){
 });
 $("#show-cart").on("click", ".plus-item", function(event){
     var name = $(this).attr("data-name");
-    shoppingCart.addItemToCart(name, 0, 1);
+    var stock = Number($(this).attr("data-stock"));
+    var pid = Number($(this).attr("data-pid"));
+    shoppingCart.addItemToCart(name, 0, 1, stock, pid);
     displayCart();
 });
 $("#show-cart").on("change", ".item-count", function(event){
