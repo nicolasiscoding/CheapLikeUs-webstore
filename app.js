@@ -30,7 +30,7 @@ var connectionPool = mysql.createPool({
 // connection.end();
 
 // Set server port
-app.listen(80);
+app.listen(3000);
 console.log('server is running at 127.0.0.1:80');
 
 // views as directory for all template files
@@ -745,3 +745,7 @@ app.post('/login/', function(req,res)
 	});
 });
 
+app.post('/user/checkout', function(req,res)
+{
+	console.log(req.body);
+});

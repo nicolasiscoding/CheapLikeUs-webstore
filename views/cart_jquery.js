@@ -75,6 +75,25 @@ $("#show-cart").on("change", ".item-count", function(event){
     shoppingCart.setCountForItem(name, count);
     displayCart();
 });
+
+
+$("#end-cart").on("click", ".submit-cart", function(event)
+{
+    var email = $("#checkoutEmail").val();
+    var pass  = $("#checkoutPassword").val();
+    var items = shoppingCart.listCart();
+
+    console.log(email);
+    console.log(pass);
+
+    $.post("/user/checkout", { email: email, password: pass, cart: items }).done(function(data)
+        {
+            alert("Data Loaded: " + data);
+        });
+
+    // displayCart();
+});
+
 displayCart();
 
 /*******************************************************************************
