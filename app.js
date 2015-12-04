@@ -323,7 +323,7 @@ app.post('/admin/deleteOrder', function(req,res)
 	res.render(__dirname + '/views/admin');
 });
 
-//updateProd
+//updateProd NEED TO FINISH
 app.post('/admin/updateProd', function(req, res)
 {
 	var productID = req.body.productID;
@@ -549,7 +549,7 @@ app.post('/req/guestItems', function(req,res)
 		}
 		else
 		{
-			var query = 'SELECT * FROM Product WHERE name LIKE \'%' + req.body.search +'%\' AND active = 1 ORDER BY ProductID asc';
+			var query = 'SELECT * FROM Product WHERE name LIKE \'%' + req.body.search +'%\' AND active = 1 ORDER BY price asc';
 			console.log(query);
 			connection.query(query, req.params.id, function(err, rows, fields)
 			{
@@ -603,7 +603,7 @@ app.post('/req/customerItems', function(req,res)
 		}
 		else
 		{
-			var query = 'SELECT * FROM Product WHERE name LIKE \'%' + req.body.search +'%\' AND active = 1 ORDER BY ProductID asc';
+			var query = 'SELECT * FROM Product WHERE name LIKE \'%' + req.body.search +'%\' AND active = 1 ORDER BY price asc';
 			console.log(query);
 			connection.query(query, req.params.id, function(err, rows, fields)
 			{
