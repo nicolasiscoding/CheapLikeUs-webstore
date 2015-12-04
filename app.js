@@ -748,4 +748,14 @@ app.post('/login/', function(req,res)
 app.post('/user/checkout', function(req,res)
 {
 	console.log(req.body);
+	var email = req.body.email;
+	var password = req.body.password;
+	var cart = req.body.cart;
+
+	for(var i = 0; i < cart.length; i++)
+	{
+		console.log(cart[i]);
+	}
+
+
 });

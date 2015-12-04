@@ -23,18 +23,20 @@ var shoppingCart = (function () {
     // Private methods and properties
     var cart = [];
 
-    function Item(name, price, count) {
-        this.name = name
-        this.price = price
-        this.count = count
+    function Item(pid, name, price, count, stock) {
+        this.name = name;
+        this.price = price;
+        this.count = count;
+        this.pid = pid;
+        this.stock = stock;
     }
 
     function saveCart() {
-        localStorage.setItem("shoppingCart", JSON.stringify(cart));
+        sessionStorage.setItem("shoppingCart", JSON.stringify(cart));
     }
 
     function loadCart() {
-        cart = JSON.parse(localStorage.getItem("shoppingCart"));
+        cart = JSON.parse(sessionStorage.getItem("shoppingCart"));
         if (cart === null) {
             cart = []
         }
@@ -50,27 +52,25 @@ var shoppingCart = (function () {
     obj.addItemToCart = function (name, price, count, stock, pid) {
         for (var i in cart) {
             if (cart[i].name === name) {
-                if (cart[i].count === stock) {
-                  cart[i].count == count;
+                if (cart[i].count == cart[i].stock) {
+                  count = 0;
                 }
-                else {
                   cart[i].count += count;
-                }
                 saveCart();
                 return;
             }
         }
 
-        console.log("addItemToCart:", name, price, count, stock);
+        console.log("addItemToCart:", name, price, count);
 
-        var item = new Item(pid, name, price, count);
+        var item = new Item(pid, name, price, count, stock);
         cart.push(item);
         saveCart();
     };
 
-    obj.setCountForItem = function (name, count, stock) {
+    obj.setCountForItem = function (name, count) {
         for (var i in cart) {
-            if (cart[i].name === name) {
+            if (cart[i].name === name && count <= cart[i].stock) {
                 cart[i].count = count;
                 break;
             }

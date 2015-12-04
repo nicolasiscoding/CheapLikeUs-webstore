@@ -36,22 +36,30 @@ function displayCart() {
     var cartArray = shoppingCart.listCart();
     console.log(cartArray);
     var output = "";
+
+
+
     for (var i in cartArray) {
         output += "<li class = 'list-group-item' id = 'results-list'><div class = 'row'><div class = 'col-xs-5 col-md-3'>"
             +cartArray[i].name
             +" </div><div class = 'col-xs-6 col-md-6'><input class='item-count' type='number' data-name='"
             +cartArray[i].name
+            +"' data-stock = '"+ cartArray[i].stock
+            +"' data-pid = '"+ cartArray[i].pid
             +"' value='"+cartArray[i].count+"' >"
             +" x "+cartArray[i].price
             +" = "+cartArray[i].total
             +" </div><div class = 'col-xs-7 col-md-3'><button type = 'button' class='btn btn-default plus-item' data-name='"
-            +cartArray[i].name+"'><span class='glyphicon glyphicon-plus' aria-hidden='true'></span></button>"
+            +cartArray[i].name+"' data-stock='"+cartArray[i].stock+"' data-pid='"+cartArray[i].pid+"'><span class='glyphicon glyphicon-plus' aria-hidden='true'></span></button>"
             +" <button type = 'button' class='btn btn-default subtract-item' data-name='"
             +cartArray[i].name+"'><span class='glyphicon glyphicon-minus' aria-hidden='true'></span></button>"
             +" <button type = 'button' class='btn btn-default delete-item' data-name='"
             +cartArray[i].name+"'><span class='glyphicon glyphicon-remove' aria-hidden='true'></span></button></div>"
             +"</div></li>";
     }
+
+
+
     $("#show-cart").html(output);
     $("#count-cart").html( shoppingCart.countCart() );
     $("#total-cart").html( shoppingCart.totalCart() );
@@ -69,8 +77,10 @@ $("#show-cart").on("click", ".subtract-item", function(event){
 $("#show-cart").on("click", ".plus-item", function(event){
     var name = $(this).attr("data-name");
     var stock = Number($(this).attr("data-stock"));
-    var pid = Number($(this).attr("data-pid"));
-    shoppingCart.addItemToCart(name, 0, 1, stock, pid);
+    var pid = Number($(this).attr("data-pid"))
+
+    console.log('stock: ' + stock + ' pid: ' + pid);
+    shoppingCart.addItemToCart(name, 0, 1);
     displayCart();
 });
 $("#show-cart").on("change", ".item-count", function(event){
