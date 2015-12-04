@@ -134,11 +134,169 @@ app.post('/admin/addUser', function(req,res)
 });
 
 //update
-app.post('admin/updateUser', function(req,res)
+app.post('/admin/updateUser', function(req,res)
 {
-	// var query = UPDATE userTable set name = 'Sal', address = '456 M St.', email ='sal@email.com', password = 'password', isStaff = 0 WHERE userID = 10;
+	var userID = req.body.userID;
+	var name = req.body.name;
+	var address = req.body.address;
+	var email = req.body.email;
+	var password = req.body.password;
+	var isStaff = req.body.isStaff;
 
+	// console.log(userID);
+	// console.log(name);
+	// console.log(address);
+	// console.log(email);
+	// console.log(password);
+	// console.log(isStaff);
+
+	if(!isStaff)
+	{
+		isStaff = 0;
+	}
+
+	var query = 'UPDATE userTable set name = \''+ name +'\', address = \'' + address+'\', email =\''+ email +'\', password = \''+password+'\', isStaff = '+ isStaff +' WHERE userID = '+ userID;
+	console.log(query);
+
+	connectionPool.query(query, function(err, rows, fields)
+	{
+		if(err)
+		{
+			console.log('connection error: \n\n\n');
+			console.log(err);
+			res.statusCode = 503;
+			res.send({
+				result: 'error',
+				err: 	err.code
+			});
+			return;
+		}
+
+	});
+
+	res.render(__dirname + '/views/admin')
 });
+
+//delUser
+app.post('/admin/deleteUser', function(req, res)
+{
+	var userID = req.body.userID;
+
+	if(!userID)
+	{
+		res.render(__dirname + '/views/admin')
+		return;
+	}
+
+	var delUserQ = 'DELETE FROM userTable where userID = ' + userID;
+	console.log(delUserQ);
+	connectionPool.query(delUserQ, function(err, rows, fields)
+	{
+		if(err)
+		{
+			console.log('connection error: \n\n\n');
+			console.log(err);
+			res.statusCode = 503;
+			res.send({
+				result: 'error',
+				err: 	err.code
+			});
+			return;
+		}
+
+	});
+
+	res.render(__dirname + '/views/admin')
+});
+
+//addOrder Changed DATE to VARCHAR 30
+app.post('/admin/addOrder', function(req, res)
+{
+	var date = req.body.date;
+	var paid = req.body.paid;
+
+	if(!paid)
+	{
+		paid = 0;
+	}
+
+	console.log(date);
+	console.log(paid);
+
+
+	var maxIDQuery = 'select MAX(id)+1 as maxID FROM orderTable';
+
+	connectionPool.query(maxIDQuery, function(err, rows, fields)
+	{
+		if(err)
+		{
+			console.log('connection error: \n\n\n');
+			console.log(err);
+			res.statusCode = 503;
+			res.send({
+				result: 'error',
+				err: 	err.code
+			});
+			return;
+		}
+
+		var nextID = rows[0].maxID;
+
+		var query = 'Insert into orderTable values(' + nextID +', \''+ date+ '\',  ' + paid + ')';
+		console.log(query);
+		connectionPool.query(query, function(err,rows,fields)
+		{
+			if(err)
+			{
+				console.log('connection error: \n\n\n');
+				console.log(err);
+				res.statusCode = 503;
+				res.send({
+					result: 'error',
+					err: 	err.code
+				});
+				return;
+			}
+		});
+
+	});
+	res.render(__dirname + '/views/admin');
+});
+
+//updateOrder
+app.post('/admin/updateOrder', function(req, res)
+{
+	var id = req.body.ID;
+	var date = req.body.date;
+	var paid = req.body.paid;
+
+	if(!paid)
+	{
+		paid = 0;
+	}
+
+	var query = 'UPDATE orderTable SET date = \''+ date +'\' , paid = \''+ paid +'\' WHERE id = ' + id;
+	console.log(query);
+
+	connectionPool.query(query, function(err, rows, fields)
+	{
+		if(err)
+		{
+			console.log('connection error: \n\n\n');
+			console.log(err);
+			res.statusCode = 503;
+			res.send({
+				result: 'error',
+				err: 	err.code
+			});
+			return;
+		}
+	});
+
+	res.render(__dirname + '/views/admin');
+});
+
+
 
 
 //in order to emulate synchonous behavior, I have to write everything as call back functions which may make the code messy

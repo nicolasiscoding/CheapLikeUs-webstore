@@ -59,29 +59,29 @@
             <div id="upd-user" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
               <div class="panel-body">
 
-                <form>
+                <form role = "form" action = "/admin/updateUser" method = "post">
                   <div class = "well well-sm">
                     Updating User Table
                   </div>
                   <div class="form-group">
-                    <input type="userID" class="form-control input-lg" id="exampleInputEmail1" placeholder="userID">
+                    <input type="userID" name="userID" class="form-control input-lg" id="exampleInputEmail1" placeholder="userID">
                   </div>   
                   <div class="form-group">
-                    <input type="name" class="form-control input-lg" id="exampleInputEmail1" placeholder="name">
+                    <input type="name" name="name" class="form-control input-lg" id="exampleInputEmail1" placeholder="name">
                   </div>
                   <div class="form-group">
-                    <input type="address" class="form-control input-lg" id="exampleInputEmail1" placeholder="address">
+                    <input type="address" name="address" class="form-control input-lg" id="exampleInputEmail1" placeholder="address">
                   </div>
                   <div class="form-group">
-                    <input type="email" class="form-control input-lg" id="exampleInputEmail1" placeholder="email">
+                    <input type="email" name="email" class="form-control input-lg" id="exampleInputEmail1" placeholder="email">
                   </div>
                   <div class="form-group">
-                    <input type="password" class="form-control input-lg" id="exampleInputPassword1" placeholder="password">
+                    <input type="password" name="password" class="form-control input-lg" id="exampleInputPassword1" placeholder="password">
                   </div>
                   <div class="form-group">
-                    <input type="isStaff" class="form-control input-lg" id="exampleInputEmail1" placeholder="isStaff">
+                    <input type="isStaff" name="isStaff" class="form-control input-lg" id="exampleInputEmail1" placeholder="isStaff">
                   </div>
-                  <button type="submit" class="btn btn-default btn-block btn-lg">Update</button>
+                  <button type="submit" value="Send" class="btn btn-default btn-block btn-lg">Update</button>
                 </form>
 
               </div>
@@ -90,20 +90,14 @@
             <div id="del-user" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
               <div class="panel-body">
 
-                <form>
+                <form action = "/admin/deleteUser" method = "post">
                   <div class = "well well-sm">
                     Deleting from User Table
                   </div>
                   <div class="form-group">
-                    <input type="userID" class="form-control input-lg" id="exampleInputEmail1" placeholder="userID">
+                    <input type="userID" name = "userID" class="form-control input-lg" id="exampleInputEmail1" placeholder="userID">
                   </div>                  
-                  <div class="form-group">
-                    <input type="name" class="form-control input-lg" id="exampleInputEmail1" placeholder="name">
-                  </div>
-                  <div class="form-group">
-                    <input type="address" class="form-control input-lg" id="exampleInputEmail1" placeholder="address">
-                  </div>
-                  <button type="submit" class="btn btn-default btn-block btn-lg">Delete</button>
+                  <button type="submit" value = "Send" class="btn btn-default btn-block btn-lg">Delete</button>
                 </form>
 
               </div>
@@ -131,17 +125,18 @@
             <div id="add-order" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
               <div class="panel-body">
 
-                <form>
+                <form role="form" action = "/admin/addOrder" method = "post">
                   <div class = "well well-sm">
                     Adding to Order Table
                   </div>
                   <div class="form-group">
-                    <input type="email" class="form-control input-lg" id="exampleInputEmail1" placeholder="new_email@email.com">
+                    <input type="date" name = "date" class="form-control input-lg" id="exampleInputEmail1" placeholder="new_email@email.com">
                   </div>
                   <div class="form-group">
-                    <input type="password" class="form-control input-lg" id="exampleInputPassword1" placeholder="You must enter your current password to make changes">
+                    <h1>Paid?</h1>
+                    <input type="checkbox" data-val="1" value="1" name="paid" class="form-control input-lg" id="paid" placeholder="paid">
                   </div>
-                  <button type="submit" class="btn btn-default btn-block btn-lg">Add</button>
+                  <button type="submit" value="Send" class="btn btn-default btn-block btn-lg">Add</button>
                 </form>
 
               </div>
@@ -150,17 +145,22 @@
             <div id="upd-order" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
               <div class="panel-body">
 
-                <form>
+                <form role="form" action = "/admin/updateOrder" method = "post">
                   <div class = "well well-sm">
                     Updating Order Table
                   </div>
                   <div class="form-group">
-                    <input type="date" class="form-control input-lg" id="exampleInputEmail1" placeholder="date">
+                    <input type="form" name = "ID" class="form-control input-lg" id="iD" placeholder="ID">
                   </div>
                   <div class="form-group">
-                    <input type="paid" class="form-control input-lg" id="exampleInputPassword1" placeholder="paid">
+                    <input type="date" name = "date" class="form-control input-lg" id="exampleInputEmail1" placeholder="new_email@email.com">
                   </div>
-                  <button type="submit" class="btn btn-default btn-block btn-lg">Update</button>
+
+                  <div class="form-group">
+                    <h1>Paid?</h1>
+                    <input type="checkbox" data-val="1" value="1" name="paid" class="form-control input-lg" id="paid" placeholder="paid">
+                  </div>
+                  <button type="submit" value="Send" class="btn btn-default btn-block btn-lg">Add</button>
                 </form>
 
               </div>
