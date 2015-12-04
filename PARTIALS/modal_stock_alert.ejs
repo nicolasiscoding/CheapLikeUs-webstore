@@ -1,30 +1,28 @@
 <!-- Modal - About -->
-<div class = "modal" id = "alerts" tabindex = "-1" role = "dialog" aria-labelledby = "about"><!-- open modal -->
+<div class = "modal" id = "stock_alert" tabindex = "-1" role = "dialog" aria-labelledby = "about"><!-- open modal -->
   <div class = "modal-dialog" role = "document">
     <div class = "modal-content">
 
       <div class = "modal-header"><!-- open modal-head -->
 
         <button type = "button" class = "close" data-dismiss = "modal" aria-label = "Close"><span aria-hidden = "true">&times;</span></button>
-        <h4 class = "modal-title logo" id = "myModalLabel">
-          cheap<sub>LIKE</sub>us<br/><br/>
+        <h4 id = "myModalLabel">
+          Alerts
         </h4>
 
       </div><!-- close modal-head -->
 
       <div class = "modal-body"><!-- open modal-body -->
                     
-        <div>
-          <p class = "about_text">
-          <br/>
-            This is a project for University of Florida's Fall 2015 CIS4301:
-            Information and Database Systems course. The goal of this project 
-            is to develop a simple online store web app incorporating 
-            the database management skills learned in the course as well as web 
-            development skill learned during independent study.
-            <br/>
-          </p>
-        </div>
+            <div class="alert alert-danger alert-dismissible fade in" role=alert>
+              <button type=button class=close data-dismiss=alert aria-label=Close><span aria-hidden=true>&times;</span></button> 
+              <h4>
+                <strong>Low Stock Alert!</strong>
+              </h4>
+              <p> 
+                Some Quantity is Low 
+              </p>
+            </div>
 
       </div><!-- close modal-body -->
 

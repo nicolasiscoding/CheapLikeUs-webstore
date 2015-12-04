@@ -30,7 +30,7 @@ var connectionPool = mysql.createPool({
 // connection.end();
 
 // Set server port
-app.listen(3000);
+app.listen(80);
 console.log('server is running at 127.0.0.1:80');
 
 // views as directory for all template files
@@ -736,10 +736,7 @@ app.post('/login/', function(req,res)
 						console.log('invalid login')
 						console.log('in 503 error box, invalid user')
 						res.statusCode = 503;
-						res.send({
-							statuscode: '503',
-							result: 'E-mail or Password is incorrect',
-						});
+						res.render(__dirname + '/views/index_alert');
 					}
 				}
 			});
