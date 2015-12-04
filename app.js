@@ -297,7 +297,66 @@ app.post('/admin/updateOrder', function(req, res)
 });
 
 
+//deleteOrder
+app.post('/admin/deleteOrder', function(req,res)
+{
+	var id = req.body.orderID;
 
+	var query = 'DELETE FROM orderTable Where id = ' + id;
+	console.log(query);
+	connectionPool.query(query, function(err, rows, fields)
+	{
+		if(err)
+		{
+			console.log('connection error: \n\n\n');
+			console.log(err);
+			res.statusCode = 503;
+			res.send({
+				result: 'error',
+				err: 	err.code
+			});
+			return;
+		}
+
+	});
+
+	res.render(__dirname + '/views/admin');
+});
+
+//updateProd
+app.post('/admin/updateProd', function(req, res)
+{
+	var productID = req.body.productID;
+	var name = req.body.name;
+	var price = req.body.price;
+	var stockquantity = req.body.stockquantity;
+	var description = req.body;
+
+});
+
+//deleteProd
+app.post('/admin/deleteProd', function(req,res)
+{	
+	var prodID = req.body.productID;
+
+	var query = 'DELETE FROM Product Where ProductID = ' + prodID;
+	console.log(query);
+		connectionPool.query(query, function(err,rows,fields)
+		{
+			if(err)
+			{
+				console.log('connection error: \n\n\n');
+				console.log(err);
+				res.statusCode = 503;
+				res.send({
+					result: 'error',
+					err: 	err.code
+				});
+				return;
+			}
+		});
+	res.render(__dirname + '/views/admin');
+});
 
 //in order to emulate synchonous behavior, I have to write everything as call back functions which may make the code messy
 app.post('/createUser', function(req,res)
@@ -490,7 +549,7 @@ app.post('/req/guestItems', function(req,res)
 		}
 		else
 		{
-			var query = 'SELECT * FROM Product WHERE name LIKE \'%' + req.body.search +'%\' ORDER BY ProductID asc';
+			var query = 'SELECT * FROM Product WHERE name LIKE \'%' + req.body.search +'%\' AND active = 1 ORDER BY ProductID asc';
 			console.log(query);
 			connection.query(query, req.params.id, function(err, rows, fields)
 			{
@@ -544,7 +603,7 @@ app.post('/req/customerItems', function(req,res)
 		}
 		else
 		{
-			var query = 'SELECT * FROM Product WHERE name LIKE \'%' + req.body.search +'%\' ORDER BY ProductID asc';
+			var query = 'SELECT * FROM Product WHERE name LIKE \'%' + req.body.search +'%\' AND active = 1 ORDER BY ProductID asc';
 			console.log(query);
 			connection.query(query, req.params.id, function(err, rows, fields)
 			{
@@ -624,7 +683,23 @@ app.post('/login/', function(req,res)
 					if(rows[0].recordCount >=1 && rows[0].isStaff == 1)
 					{
 						console.log('at least one staff record');
-						res.render(__dirname + '/views/admin');
+
+						//if we have a item with an alert flag
+						var alert = "select ProductID, name from Product where alert = 1";
+
+						connectionPool.query(alert, function(err,rows,fields)
+						{
+							console.log(rows);
+							if(!rows[0])
+							{
+								res.render(__dirname + '/views/admin');
+								return;
+							}
+
+							res.render(__dirname + '/views/admin_alert');
+							return;
+						});
+
 						// next();
 					}
 					else if(rows[0].recordCount >=1 && rows[0].isStaff == 0)
