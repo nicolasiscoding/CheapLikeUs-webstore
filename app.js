@@ -327,7 +327,7 @@ app.post('/admin/addProd',function(req,res)
 		{
 			var nextID = rows[0].nextID;
 
-			var insertQuery = 'INSERT INTO Product values (\''+ nextID  +'\' ,\''+  name +'\', \''+  price  +'\',\''+ stockquantity +'\',\'' + description + '\',\''+ active+ '\',\'0\')';
+			var insertQuery = 'INSERT INTO Product values (\''+ nextID  +'\' ,\''+  name +'\', \''+  price  +'\',\''+ stockquantity +'\',\'' + description + '\',\''+ active+ '\',\'0\', (SELECT NOW()))';
 			console.log(insertQuery);
 			connectionPool.query(insertQuery, function(err, rows, fields)
 				{
@@ -394,11 +394,11 @@ app.post('/admin/deleteProd', function(req,res)
 				console.log('connection error: \n\n\n');
 				console.log(err);
 				res.statusCode = 503;
-				res.send({
-					result: 'error',
-					err: 	err.code
-				});
-				return;
+				// res.send({
+				// 	result: 'error',
+				// 	err: 	err.code
+				// });
+				// return;
 			}
 		});
 	res.render(__dirname + '/views/admin');
@@ -903,7 +903,7 @@ app.post('/user/checkout', function(req,res)
 
 								var productIDscoped = rows[0].ProductID;
 								var newQuant = rows[0].s;
-								var updateQuant = 'UPDATE Product SET stockquantity ='+ newQuant +' WHERE ProductID =' + productIDscoped;
+								var updateQuant = 'UPDATE Product SET stockquantity ='+ newQuant +', LastPurchase = (SELECT NOW()) WHERE ProductID =' + productIDscoped;
 								connectionPool.query(updateQuant, function(err,rows,fields)
 								{
 									if(err)
