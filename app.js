@@ -30,7 +30,7 @@ var connectionPool = mysql.createPool({
 // connection.end();
 
 // Set server port
-app.listen(3000);
+app.listen(80);
 console.log('server is running at 127.0.0.1:80');
 
 // views as directory for all template files
@@ -676,7 +676,7 @@ app.post('/login/', function(req,res)
 						console.log('at least one staff record');
 
 						//if we have a item with an alert flag
-						var alert = "select ProductID, name from Product where alert = 1";
+						var alert = "select ProductID, name, stockquantity from Product where alert = 1";
 
 						connectionPool.query(alert, function(err,rows,fields)
 						{
@@ -687,7 +687,7 @@ app.post('/login/', function(req,res)
 								return;
 							}
 
-							res.render(__dirname + '/views/admin_alert');
+							res.render(__dirname + '/views/admin_alert', {data: rows});
 							return;
 						});
 

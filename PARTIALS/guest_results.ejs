@@ -12,22 +12,20 @@
           <li class = "list-group-item" id = "results-list" >
             <div class = "row">
 
-              <div class = "col-xs-5 col-md-3" id = "row-name">
+              <div class = "col-xs-5 col-md-3" id = "left">
                 <%= row.name %>
               </div>
 
-              <div class = "col-xs-9 col-md-7" id = "row-desc">
+              <div class = "col-xs-9 col-md-7" id = "left">
                 <%= row.description %>
               </div>
 
-              <div class = "col-xs-4 col-md-2" id = "row-price">
+              <div class = "col-xs-4 col-md-2" id = "right">
                 $ <%= row.price %>   
               </div>
 
             </div> 
           </li>
-                                              <!--      <%= row.ProductID %> -->
-                                              <!--      <%= row.stockquantity %> -->
         <% }) %>
       </ul>
 

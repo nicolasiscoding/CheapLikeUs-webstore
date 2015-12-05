@@ -207,6 +207,14 @@ body {
   color: #2e2e2e !important;
   background-color: #eaeaea !important;
 }
+
+.well {
+  color: #2e2e2e !important;
+  background-color: #fbb450 !important;
+  text-align: center;
+  font-style: bold;
+  font-size: 20px;
+}
 /*-- modal styling -----------------------------------------------------------*/
 
 .modal-dialog {
@@ -294,15 +302,11 @@ body {
   background-color: #eaeaea;
 }
 
-#row-name {
+#left {
   text-align: left !important;
 }
 
-#row-desc {
-  text-align: left !important;
-}
-
-#row-price {
+#right {
   text-align: right !important;
 }
 
