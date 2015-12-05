@@ -18,16 +18,6 @@ var connectionPool = mysql.createPool({
   password : 'toor',
   database : 'schema'
 });
- 
-// connection.connect();
- 
-// connection.query('SELECT 1 + 1 AS solution', function(err, rows, fields) {
-//   if (err) throw err;
- 
-//   console.log('The solution is: ', rows[0].solution);
-// });
- 
-// connection.end();
 
 // Set server port
 app.listen(80);
@@ -323,7 +313,7 @@ app.post('/admin/deleteOrder', function(req,res)
 	res.render(__dirname + '/views/admin');
 });
 
-//addProd NEED TO FINISH
+//addProd 
 app.post('/admin/addProd',function(req,res)
 	{
 		var name = req.body.name;
