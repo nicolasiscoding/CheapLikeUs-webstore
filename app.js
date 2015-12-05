@@ -20,7 +20,7 @@ var connectionPool = mysql.createPool({
 });
 
 // Set server port
-app.listen(80);
+app.listen(3000);
 console.log('server is running at 127.0.0.1:80');
 
 // views as directory for all template files
@@ -865,3 +865,180 @@ app.post('/user/checkout', function(req,res)
 		});
 	});
 });
+
+app.post('/user/changeEmail', function(req,res)
+{
+	var newemail = req.body.newemail;
+	var currentEmail = req.body.email;
+	var password = req.body.password;
+
+	newemail = newemail.toUpperCase();
+
+	var query = 'UPDATE userTable set email = \''+ newemail +'\' where email = \''+currentEmail+'\' AND password = \''+password+'\'';
+	connectionPool.query(query, function(err,rows,fields)
+		{
+			if(err)
+			{
+				console.log('connection error: \n\n\n');
+				console.log(err);
+				res.statusCode = 503;
+				res.send({
+					result: 'error, having issue connecting to MYSQL DB instance',
+					err: 	err.code
+				});
+			}
+			else
+			{
+				var query = 'SELECT * FROM Product WHERE name LIKE \'%%\' AND active = 1 ORDER BY price asc';
+				console.log(query);
+				connectionPool.query(query, function(err, rows, fields)
+				{
+					if(err)
+					{
+						console.log(err);
+						res.statusCode = 500;
+						res.send({
+							result: 'error',
+							err: 	err.code
+						});
+					}
+					else
+					{
+						res.render(__dirname + '/views/customer', {data: rows})
+					}
+				});
+			}
+		});
+});
+
+app.post('/user/changePassword', function(req,res)
+{
+	var newpassword = req.body.newpassword;
+	var currentEmail = req.body.email;
+	var password = req.body.password;
+
+	var query = 'UPDATE userTable set password = \''+ newpassword +'\' where email = \''+currentEmail+'\' AND password = \''+password+'\'';
+	connectionPool.query(query, function(err,rows,fields)
+		{
+			if(err)
+			{
+				console.log('connection error: \n\n\n');
+				console.log(err);
+				res.statusCode = 503;
+				res.send({
+					result: 'error, having issue connecting to MYSQL DB instance',
+					err: 	err.code
+				});
+			}
+			else
+			{
+				var query = 'SELECT * FROM Product WHERE name LIKE \'%%\' AND active = 1 ORDER BY price asc';
+				console.log(query);
+				connectionPool.query(query, function(err, rows, fields)
+				{
+					if(err)
+					{
+						console.log(err);
+						res.statusCode = 500;
+						res.send({
+							result: 'error',
+							err: 	err.code
+						});
+					}
+					else
+					{
+						res.render(__dirname + '/views/customer', {data: rows})
+					}
+				});
+			}
+		});
+});
+
+app.post('/user/changeAddress', function(req,res)
+{
+	var street = req.body.street;
+	var city = req.body.city;
+	var state = req.body.state;
+	var zip = req.body.zip;
+
+	var currentEmail = req.body.email;
+	var password = req.body.password;
+
+	var fullAddr = street + " " + city + ", " + state + " " + zip;
+
+	var query = 'UPDATE userTable set address = \''+ fullAddr +'\' where email = \''+currentEmail+'\' AND password = \''+password+'\'';
+	connectionPool.query(query, function(err,rows,fields)
+		{
+			if(err)
+			{
+				console.log('connection error: \n\n\n');
+				console.log(err);
+				res.statusCode = 503;
+				res.send({
+					result: 'error, having issue connecting to MYSQL DB instance',
+					err: 	err.code
+				});
+			}
+			else
+			{
+				var query = 'SELECT * FROM Product WHERE name LIKE \'%%\' AND active = 1 ORDER BY price asc';
+				console.log(query);
+				connectionPool.query(query, function(err, rows, fields)
+				{
+					if(err)
+					{
+						console.log(err);
+						res.statusCode = 500;
+						res.send({
+							result: 'error',
+							err: 	err.code
+						});
+					}
+					else
+					{
+						res.render(__dirname + '/views/customer', {data: rows})
+					}
+				});
+			}
+		});
+});
+
+app.post('/user/deleteAccount', function(req,res)
+	{
+		var email = req.body.email;
+		var password = req.body.password;
+
+		var userIDquery = 'select userID from userTable WHERE email = \''+email+'\' AND password = \''+password+'\'';
+		connectionPool.query(userIDquery, function(err, rows, fields)
+			{
+					if(err)
+					{
+						console.log(err);
+						res.statusCode = 500;
+						res.send({
+							result: 'error',
+							err: 	err.code
+						});
+						return;
+					}
+
+					var ID = rows[0].userID;
+
+					var deleteQuery = 'DELETE from userTable WHERE userID = \''+ID+'\'';
+					connectionPool.query(deleteQuery, function(err, rows, fields)
+						{
+							if(err)
+							{
+								console.log(err);
+								res.statusCode = 500;
+								res.send({
+									result: 'error',
+									err: 	err.code
+								});
+								return;
+							}
+						});
+			});
+
+		  	res.render(__dirname + '/views/index');
+	});
