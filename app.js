@@ -464,7 +464,6 @@ app.post('/createUser', function(req,res)
 					}
 
 				var nextID = rows[0].nextID;
-				// console.log(rows[0].nextID);
 
 				var insertQuery = "INSERT INTO userTable VALUES (" + nextID +", \'" + usersName +  "\', \'" + street + " " + city + ", " + state + " " + zip +"\', \'" + email +"\', \'"+ password + "\', 0)";
 				connectionPool.query(insertQuery, function(err, rows, fields)
@@ -498,7 +497,6 @@ app.post('/createUser', function(req,res)
 					}
 					else
 					{
-						//For Phillip: This will go to the 'customer.ejs' and give you the rows object
 						res.render(__dirname + '/views/customer' , {data: rows, sortby:"Price", query: ''});
 					}
 				});
@@ -547,17 +545,8 @@ app.post('/req/guestItems', function(req,res)
 				}
 				else
 				{
-					// res.send({
-					// 	result: 'success',
-					// 	err: 	'',
-					// 	fields: fields,
-					// 	json: 	rows,
-					// 	length: rows.length
-					// });
-
 					console.log(rows);
 					console.log(item);
-
 
 					res.render(__dirname + '/views/guest', {data: rows, query: item, sortby: 'Price'});
 				}
@@ -565,7 +554,6 @@ app.post('/req/guestItems', function(req,res)
 			connection.release();
 		}
 	});
-	// connection.destroy();
 });
 
 app.post('/req/guestItemsQueryBy', function(req,res)
@@ -596,13 +584,6 @@ app.post('/req/guestItemsQueryBy', function(req,res)
 				}
 				else
 				{
-					// res.send({
-					// 	result: 'success',
-					// 	err: 	'',
-					// 	fields: fields,
-					// 	json: 	rows,
-					// 	length: rows.length
-					// });
 
 					console.log(rows);
 					console.log(item);
@@ -655,7 +636,6 @@ app.post('/req/customerItems', function(req,res)
 			connection.release();
 		}
 	});
-	// connection.destroy();
 });
 
 app.post('/req/customerItemsQueryBy', function(req,res)
@@ -686,14 +666,6 @@ app.post('/req/customerItemsQueryBy', function(req,res)
 				}
 				else
 				{
-					// res.send({
-					// 	result: 'success',
-					// 	err: 	'',
-					// 	fields: fields,
-					// 	json: 	rows,
-					// 	length: rows.length
-					// });
-
 					console.log(rows);
 					console.log(item);
 
@@ -775,8 +747,6 @@ app.post('/login/', function(req,res)
 							res.render(__dirname + '/views/admin_alert', {data: rows});
 							return;
 						});
-
-						// next();
 					}
 					else if(rows[0].recordCount >=1 && rows[0].isStaff == 0)
 					{
@@ -785,7 +755,6 @@ app.post('/login/', function(req,res)
 
 						//query for all 
 						var query = 'SELECT * FROM Product WHERE name LIKE \'%%\' ORDER BY ProductID asc';
-						// console.log(query);
 						connection.query(query, req.params.id, function(err, rows, fields)
 						{
 							if(err)
@@ -799,13 +768,11 @@ app.post('/login/', function(req,res)
 							}
 							else
 							{
-								//For Phillip: This will go to the 'customer.ejs' and give you the rows object
 								
 								console.log(rows);
 								res.render(__dirname + '/views/customer' , {data: rows, sortby:"Price", query: ''});
 							}
 						});
-						// next();
 					}
 					else 
 					{
@@ -836,9 +803,7 @@ app.post('/user/checkout', function(req,res)
 	}
 
 	console.log(grandTotal);
-	// console.log(Date.now())
 
-	//nextID
 	var maxIDQuery = 'select MAX(id)+1 as maxID FROM orderTable';
 	connectionPool.query(maxIDQuery, function(err,rows,fields)
 	{
