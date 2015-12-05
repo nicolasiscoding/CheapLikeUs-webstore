@@ -499,7 +499,7 @@ app.post('/createUser', function(req,res)
 					else
 					{
 						//For Phillip: This will go to the 'customer.ejs' and give you the rows object
-						res.render(__dirname + '/views/customer', {data: rows})
+						res.render(__dirname + '/views/customer' , {data: rows, sortby:"Price", query: ''});
 					}
 				});
 
@@ -515,6 +515,7 @@ app.post('/createUser', function(req,res)
 app.post('/req/guestItems', function(req,res)
 {
 
+	var item = req.body.search;
 	console.log('Posting items for guests!!');
 	connectionPool.getConnection(function(err, connection)
 	{
@@ -530,8 +531,9 @@ app.post('/req/guestItems', function(req,res)
 		}
 		else
 		{
-			var query = 'SELECT * FROM Product WHERE name LIKE \'%' + req.body.search +'%\' AND active = 1 ORDER BY price asc';
+			var query = 'SELECT * FROM Product WHERE name LIKE \'%' + item +'%\' AND active = 1 ORDER BY ProductID asc';
 			console.log(query);
+
 			connection.query(query, req.params.id, function(err, rows, fields)
 			{
 				if(err)
@@ -553,10 +555,11 @@ app.post('/req/guestItems', function(req,res)
 					// 	length: rows.length
 					// });
 
-					//For Phillip: This will go to the 'guest.ejs' and give you the rows object
 					console.log(rows);
+					console.log(item);
 
-					res.render(__dirname + '/views/guest', {data: rows});
+
+					res.render(__dirname + '/views/guest', {data: rows, query: item, sortby: 'Price'});
 				}
 			});
 			connection.release();
@@ -564,6 +567,52 @@ app.post('/req/guestItems', function(req,res)
 	});
 	// connection.destroy();
 });
+
+app.post('/req/guestItemsQueryBy', function(req,res)
+	{
+		var sortby = req.body.sortby;
+		var item = req.body.query;
+
+		var nextSortBy = 'Price';
+
+		if(sortby == 'Price')
+		{
+			nextSortBy = 'ProductID'
+		}
+
+		var query = 'SELECT * FROM Product WHERE name LIKE \'%' + item +'%\' AND active = 1 ORDER BY ' + sortby + ' asc';
+			console.log(query);
+
+			connectionPool.query(query, req.params.id, function(err, rows, fields)
+			{
+				if(err)
+				{
+					console.log(err);
+					res.statusCode = 500;
+					res.send({
+						result: 'error',
+						err: 	err.code
+					});
+				}
+				else
+				{
+					// res.send({
+					// 	result: 'success',
+					// 	err: 	'',
+					// 	fields: fields,
+					// 	json: 	rows,
+					// 	length: rows.length
+					// });
+
+					console.log(rows);
+					console.log(item);
+
+					res.render(__dirname + '/views/guest', {data: rows, query: item, sortby: nextSortBy});
+				}
+			});
+
+
+	});
 
 //this is a route for the customer page's search request
 app.post('/req/customerItems', function(req,res)
@@ -584,7 +633,8 @@ app.post('/req/customerItems', function(req,res)
 		}
 		else
 		{
-			var query = 'SELECT * FROM Product WHERE name LIKE \'%' + req.body.search +'%\' AND active = 1 ORDER BY price asc';
+			var item = req.body.search;
+			var query = 'SELECT * FROM Product WHERE name LIKE \'%' + item +'%\' AND active = 1 ORDER BY ProductID asc';
 			console.log(query);
 			connection.query(query, req.params.id, function(err, rows, fields)
 			{
@@ -599,8 +649,7 @@ app.post('/req/customerItems', function(req,res)
 				}
 				else
 				{
-					//For Phillip: This will go to the 'customer.ejs' and give you the rows object
-					res.render(__dirname + '/views/customer', {data: rows})
+					res.render(__dirname + '/views/customer', {data: rows, query: item, sortby: 'Price'});
 				}
 			});
 			connection.release();
@@ -608,6 +657,52 @@ app.post('/req/customerItems', function(req,res)
 	});
 	// connection.destroy();
 });
+
+app.post('/req/customerItemsQueryBy', function(req,res)
+	{
+		var sortby = req.body.sortby;
+		var item = req.body.query;
+
+		var nextSortBy = 'Price';
+
+		if(sortby == 'Price')
+		{
+			nextSortBy = 'ProductID'
+		}
+
+		var query = 'SELECT * FROM Product WHERE name LIKE \'%' + item +'%\' AND active = 1 ORDER BY ' + sortby + ' asc';
+			console.log(query);
+
+			connectionPool.query(query, req.params.id, function(err, rows, fields)
+			{
+				if(err)
+				{
+					console.log(err);
+					res.statusCode = 500;
+					res.send({
+						result: 'error',
+						err: 	err.code
+					});
+				}
+				else
+				{
+					// res.send({
+					// 	result: 'success',
+					// 	err: 	'',
+					// 	fields: fields,
+					// 	json: 	rows,
+					// 	length: rows.length
+					// });
+
+					console.log(rows);
+					console.log(item);
+
+					res.render(__dirname + '/views/customer', {data: rows, query: item, sortby: nextSortBy});
+				}
+			});
+
+
+	});
 
 app.post('/login/', function(req,res)
 {
@@ -707,7 +802,7 @@ app.post('/login/', function(req,res)
 								//For Phillip: This will go to the 'customer.ejs' and give you the rows object
 								
 								console.log(rows);
-								res.render(__dirname + '/views/customer' , {data: rows});
+								res.render(__dirname + '/views/customer' , {data: rows, sortby:"Price", query: ''});
 							}
 						});
 						// next();
@@ -889,7 +984,7 @@ app.post('/user/changeEmail', function(req,res)
 			}
 			else
 			{
-				var query = 'SELECT * FROM Product WHERE name LIKE \'%%\' AND active = 1 ORDER BY price asc';
+				var query = 'SELECT * FROM Product WHERE name LIKE \'%%\' AND active = 1 ORDER BY ProductID asc';
 				console.log(query);
 				connectionPool.query(query, function(err, rows, fields)
 				{
@@ -904,7 +999,7 @@ app.post('/user/changeEmail', function(req,res)
 					}
 					else
 					{
-						res.render(__dirname + '/views/customer', {data: rows})
+						res.render(__dirname + '/views/customer' , {data: rows, sortby:"Price", query: ''});
 					}
 				});
 			}
@@ -932,7 +1027,7 @@ app.post('/user/changePassword', function(req,res)
 			}
 			else
 			{
-				var query = 'SELECT * FROM Product WHERE name LIKE \'%%\' AND active = 1 ORDER BY price asc';
+				var query = 'SELECT * FROM Product WHERE name LIKE \'%%\' AND active = 1 ORDER BY ProductID asc';
 				console.log(query);
 				connectionPool.query(query, function(err, rows, fields)
 				{
@@ -947,7 +1042,7 @@ app.post('/user/changePassword', function(req,res)
 					}
 					else
 					{
-						res.render(__dirname + '/views/customer', {data: rows})
+						res.render(__dirname + '/views/customer' , {data: rows, sortby:"Price", query: ''});
 					}
 				});
 			}
@@ -981,7 +1076,7 @@ app.post('/user/changeAddress', function(req,res)
 			}
 			else
 			{
-				var query = 'SELECT * FROM Product WHERE name LIKE \'%%\' AND active = 1 ORDER BY price asc';
+				var query = 'SELECT * FROM Product WHERE name LIKE \'%%\' AND active = 1 ORDER BY ProductID asc';
 				console.log(query);
 				connectionPool.query(query, function(err, rows, fields)
 				{
@@ -996,7 +1091,7 @@ app.post('/user/changeAddress', function(req,res)
 					}
 					else
 					{
-						res.render(__dirname + '/views/customer', {data: rows})
+						res.render(__dirname + '/views/customer' , {data: rows, sortby:"Price", query: ''});
 					}
 				});
 			}

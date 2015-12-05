@@ -1,8 +1,13 @@
 <div class="panel panel-default">
   <div class="panel-heading">
-      <button type="button" class="btn btn-default btn-sm pull-right">Sort By Price</button>
+    <form role = "form" action = "/req/guestItemsQueryBy" method = "post">
+      <input class="hidden" name="sortby" value= "<%=sortby%>">
+      <input class="hidden" name="query" value= "<%=query%>">
+      <button type="Submit" class="btn btn-default btn-sm pull-right">Sort By <%= sortby%></button>
+    </form>
     <h4 class="panel-title">Search Results<br/><br/></h3>
   </div>
+
 
     <!-- List group -->
 
