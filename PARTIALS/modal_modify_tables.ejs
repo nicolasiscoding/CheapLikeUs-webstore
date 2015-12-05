@@ -204,26 +204,26 @@
             <div id="add-product" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
               <div class="panel-body">
 
-                <form>
+                <form role="form" action = "/admin/addProd" method = "post">
                   <div class = "well well-sm">
                     Adding to Product Table
                   </div>
                   <div class="form-group">
-                    <input type="name" class="form-control input-lg" id="exampleInputEmail1" placeholder="name">
+                    <input type="name" name="name" class="form-control input-lg" id="exampleInputEmail1" placeholder="name">
                   </div>
                   <div class="form-group">
-                    <input type="price" class="form-control input-lg" id="exampleInputEmail1" placeholder="price">
+                    <input type="price" name="price" class="form-control input-lg" id="exampleInputEmail1" placeholder="price">
                   </div>
                   <div class="form-group">
-                    <input type="stockquantity" class="form-control input-lg" id="exampleInputEmail1" placeholder="stockquantity">
+                    <input type="stockquantity" name="stockquantity" class="form-control input-lg" id="exampleInputEmail1" placeholder="stockquantity">
                   </div>
                   <div class="form-group">
-                    <input type="description" class="form-control input-lg" id="exampleInputPassword1" placeholder="description">
+                    <input type="description" name="description" class="form-control input-lg" id="exampleInputPassword1" placeholder="description">
                   </div>
                   <div class="form-group">
-                    <input type="active" class="form-control input-lg" id="exampleInputEmail1" placeholder="active">
+                    <input type="active" name="active" class="form-control input-lg" id="exampleInputEmail1" placeholder="active">
                   </div>
-                  <button type="submit" class="btn btn-default btn-block btn-lg">Add</button>
+                  <button type="submit" value="Send" class="btn btn-default btn-block btn-lg">Add</button>
                 </form>
 
               </div>
@@ -232,29 +232,29 @@
             <div id="upd-product" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
               <div class="panel-body">
 
-                <form>
+                <form role="form" action = "/admin/updateProd" method = "post">
                   <div class = "well well-sm">
                     Updating Product Table
                   </div>
                   <div class="form-group">
-                    <input type="productID" class="form-control input-lg" id="exampleInputEmail1" placeholder="productID">
+                    <input type="productID" name="productID" class="form-control input-lg" id="exampleInputEmail1" placeholder="productID">
                   </div>
                   <div class="form-group">
-                    <input type="name" class="form-control input-lg" id="exampleInputEmail1" placeholder="name">
+                    <input type="name" name="name" class="form-control input-lg" id="exampleInputEmail1" placeholder="name">
                   </div>
                   <div class="form-group">
-                    <input type="price" class="form-control input-lg" id="exampleInputEmail1" placeholder="price">
+                    <input type="price" name="price" class="form-control input-lg" id="exampleInputEmail1" placeholder="price">
                   </div>
                   <div class="form-group">
-                    <input type="stockquantity" class="form-control input-lg" id="exampleInputEmail1" placeholder="stockquantity">
+                    <input type="stockquantity" name = "stockquantity" class="form-control input-lg" id="exampleInputEmail1" placeholder="stockquantity">
                   </div>
                   <div class="form-group">
-                    <input type="description" class="form-control input-lg" id="exampleInputPassword1" placeholder="description">
+                    <input type="description" name = "description" class="form-control input-lg" id="exampleInputPassword1" placeholder="description">
                   </div>
                   <div class="form-group">
-                    <input type="active" class="form-control input-lg" id="exampleInputEmail1" placeholder="active">
+                    <input type="active" name="active" class="form-control input-lg" id="exampleInputEmail1" placeholder="active">
                   </div>
-                  <button type="submit" class="btn btn-default btn-block btn-lg">Update</button>
+                  <button type="submit" value="Send" class="btn btn-default btn-block btn-lg">Update</button>
                 </form>
 
               </div>

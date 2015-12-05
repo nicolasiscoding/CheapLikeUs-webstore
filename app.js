@@ -323,15 +323,71 @@ app.post('/admin/deleteOrder', function(req,res)
 	res.render(__dirname + '/views/admin');
 });
 
-//updateProd NEED TO FINISH
+//addProd NEED TO FINISH
+app.post('/admin/addProd',function(req,res)
+	{
+		var name = req.body.name;
+		var price = req.body.price;
+		var stockquantity = req.body.stockquantity;
+		var description = req.body.description;
+		var active = req.body.active;
+
+		var nextIDquery = 'select MAX(ProductID) +1 as nextID from Product';
+		connectionPool.query(nextIDquery, function(err,rows,fields)
+		{
+			var nextID = rows[0].nextID;
+
+			var insertQuery = 'INSERT INTO Product values (\''+ nextID  +'\' ,\''+  name +'\', \''+  price  +'\',\''+ stockquantity +'\',\'' + description + '\',\''+ active+ '\',\'0\')';
+			console.log(insertQuery);
+			connectionPool.query(insertQuery, function(err, rows, fields)
+				{
+					if(err)
+					{
+						console.log('connection error: \n\n\n');
+						console.log(err);
+						res.statusCode = 503;
+						res.send({
+							result: 'error',
+							err: 	err.code
+						});
+						return;
+					}
+				});
+
+		});
+
+		res.render(__dirname + '/views/admin');
+	});
+
+//updateProd 
 app.post('/admin/updateProd', function(req, res)
 {
 	var productID = req.body.productID;
 	var name = req.body.name;
 	var price = req.body.price;
 	var stockquantity = req.body.stockquantity;
-	var description = req.body;
+	var description = req.body.description;
+	var active = req.body.active;
 
+	var query = 'UPDATE Product SET name = \''+ name +'\', price ='+  price +' , stockquantity ='+ stockquantity +' , active ='+ active +', description = \''+ description+'\', alert = 0 WHERE ProductID= ' + productID;
+	console.log(query);
+
+	connectionPool.query(query, function(err,rows,field)
+		{
+			if(err)
+			{
+				console.log('connection error: \n\n\n');
+				console.log(err);
+				res.statusCode = 503;
+				res.send({
+					result: 'error',
+					err: 	err.code
+				});
+				return;
+			}
+		});
+
+	res.render(__dirname + '/views/admin');
 });
 
 //deleteProd
@@ -462,71 +518,6 @@ app.post('/createUser', function(req,res)
 		}
 	});
 
-	// connectionPool.getConnection(function(err, connection)
-	// {
-	// 	if(err)
-	// 	{
-	// 		console.log('connection error: \n\n\n');
-	// 		console.log(err);
-	// 		res.statusCode = 503;
-	// 		res.send({
-	// 			result: 'error',
-	// 			err: 	err.code
-	// 		});
-	// 	}
-	// 	else
-	// 	{
-
-	// 		console.log('testroute')
-
-	// 		// console.log(usersName);
-	// 		// console.log(email);
-	// 		// console.log(password);
-	// 		// console.log(street);
-	// 		// console.log(city);
-	// 		// console.log(state);
-	// 		// console.log(zip);
-
-	// 		var checkIfUserExists = 'select count(*) as recordcount from userTable where email =\''+ email + '\'';
-
-	// 		console.log('Checking to see if user exists');
-	// 		console.log(checkIfUserExists);
-
-	// 		connection.query(checkIfUserExists, req.params.id, function(err, rows, fields)
-	// 		{
-	// 			if(err)
-	// 			{
-	// 				console.log(err);
-	// 				res.statusCode = 500;
-	// 				res.send({
-	// 					result: 'error',
-	// 					err: 	err.code
-	// 				});
-	// 			}
-	// 			else
-	// 			{
-	// 				// res.send({
-	// 				// 	result: 'success',
-	// 				// 	err: 	'',
-	// 				// 	fields: fields,
-	// 				// 	json: 	rows,
-	// 				// 	length: rows.length
-	// 				// });
-	// 				var exists = rows[0].recordcount;
-	// 				if(exists == 1)
-	// 				{
-	// 					//Here we would choose how we respond to a user who's account exists already
-	// 					// res.render()
-	// 					res.send({response: 'userexists!'});
-	// 					console.log('UserExists!');
-	// 				}
-	// 			}
-	// 		});
-	// 		connection.release();
-
-
-	// 	}
-	// });
 });
 
 
@@ -836,9 +827,6 @@ app.post('/user/checkout', function(req,res)
 								return;
 							}
 						});
-
-
-
 
 					res.send({
 						CustomerNumber: userID,
